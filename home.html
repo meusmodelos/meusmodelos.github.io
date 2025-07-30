@@ -14,20 +14,20 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f5f8ff 0%, #e3f2fd 100%);
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
             min-height: 100vh;
-            color: #333;
+            color: #ffffff;
         }
 
         .header {
-            background: rgba(255, 255, 255, 0.98);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
             padding: 20px 0;
-            box-shadow: 0 2px 30px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 2px 30px rgba(220, 20, 60, 0.3);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+            border-bottom: 1px solid rgba(220, 20, 60, 0.2);
         }
 
         .header-content {
@@ -42,7 +42,7 @@
         .logo h1 {
             font-size: 1.8rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #dc143c, #ff0000);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -59,22 +59,23 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #dc143c, #ff0000);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: 600;
             font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
         }
 
         .user-name {
             font-weight: 500;
-            color: #333;
+            color: #ffffff;
         }
 
         .logout-btn {
-            background: #ff4757;
+            background: #dc143c;
             color: white;
             border: none;
             padding: 12px 20px;
@@ -86,9 +87,9 @@
         }
 
         .logout-btn:hover {
-            background: #ff3742;
+            background: #ff0000;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3);
+            box-shadow: 0 5px 15px rgba(220, 20, 60, 0.5);
         }
 
         .main-content {
@@ -98,32 +99,33 @@
         }
 
         .welcome-section {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(20px);
             border-radius: 15px;
             padding: 30px 20px;
             margin-bottom: 25px;
             text-align: center;
             animation: fadeInUp 0.8s ease-out;
-            border: 1px solid rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(220, 20, 60, 0.3);
+            box-shadow: 0 8px 32px rgba(220, 20, 60, 0.1);
         }
 
         .welcome-section h2 {
             font-size: 2rem;
-            color: #333;
+            color: #ffffff;
             margin-bottom: 10px;
             font-weight: 700;
         }
 
         .welcome-section p {
-            color: #666;
+            color: #cccccc;
             font-size: 1rem;
             margin-bottom: 20px;
             line-height: 1.5;
         }
 
         .new-project-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #dc143c, #ff0000);
             color: white;
             border: none;
             padding: 15px 25px;
@@ -142,7 +144,7 @@
 
         .new-project-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 15px 35px rgba(220, 20, 60, 0.6);
         }
 
         .new-project-btn::before {
@@ -166,7 +168,7 @@
 
         .section-title {
             font-size: 1.5rem;
-            color: #333;
+            color: #ffffff;
             margin-bottom: 20px;
             font-weight: 600;
             display: flex;
@@ -181,14 +183,14 @@
         }
 
         .project-card {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(20px);
             border-radius: 15px;
             padding: 20px;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.08);
+            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
-            border: 1px solid rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(220, 20, 60, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -200,12 +202,13 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #dc143c, #ff0000);
         }
 
         .project-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.15);
+            box-shadow: 0 20px 50px rgba(220, 20, 60, 0.4);
+            border-color: rgba(220, 20, 60, 0.6);
         }
 
         .project-header {
@@ -218,13 +221,13 @@
         .project-title {
             font-size: 1.2rem;
             font-weight: 600;
-            color: #333;
+            color: #ffffff;
             margin-bottom: 6px;
         }
 
         .project-date {
             font-size: 0.8rem;
-            color: #888;
+            color: #cccccc;
         }
 
         .project-actions {
@@ -245,27 +248,27 @@
         }
 
         .edit-btn {
-            background: #667eea;
+            background: #dc143c;
             color: white;
         }
 
         .edit-btn:hover {
-            background: #5a6fd8;
+            background: #ff0000;
             transform: scale(1.1);
         }
 
         .delete-btn {
-            background: #ff4757;
+            background: #8b0000;
             color: white;
         }
 
         .delete-btn:hover {
-            background: #ff3742;
+            background: #dc143c;
             transform: scale(1.1);
         }
 
         .project-description {
-            color: #666;
+            color: #cccccc;
             font-size: 0.9rem;
             line-height: 1.4;
             margin-bottom: 15px;
@@ -276,16 +279,16 @@
             justify-content: space-between;
             align-items: center;
             padding-top: 15px;
-            border-top: 1px solid rgba(102, 126, 234, 0.1);
+            border-top: 1px solid rgba(220, 20, 60, 0.2);
         }
 
         .project-size {
             font-size: 0.85rem;
-            color: #888;
+            color: #cccccc;
         }
 
         .project-status {
-            background: #2ed573;
+            background: #dc143c;
             color: white;
             padding: 4px 12px;
             border-radius: 20px;
@@ -296,7 +299,7 @@
         .empty-state {
             text-align: center;
             padding: 80px 20px;
-            color: #888;
+            color: #cccccc;
         }
 
         .empty-state svg {
@@ -304,12 +307,13 @@
             height: 120px;
             margin-bottom: 20px;
             opacity: 0.5;
+            fill: #dc143c;
         }
 
         .empty-state h3 {
             font-size: 1.5rem;
             margin-bottom: 10px;
-            color: #666;
+            color: #ffffff;
         }
 
         .empty-state p {
@@ -323,7 +327,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(0, 0, 0, 0.95);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -340,14 +344,14 @@
 
         .loading-content {
             text-align: center;
-            color: #667eea;
+            color: #dc143c;
         }
 
         .loading-spinner {
             width: 60px;
             height: 60px;
-            border: 4px solid #e3f2fd;
-            border-top: 4px solid #667eea;
+            border: 4px solid rgba(220, 20, 60, 0.2);
+            border-top: 4px solid #dc143c;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 20px;
@@ -395,10 +399,27 @@
 
         /* Layout de celular já aplicado por padrão */
         body {
-            background: linear-gradient(135deg, #f5f8ff 0%, #e3f2fd 100%);
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
             min-height: 100vh;
-            color: #333;
+            color: #ffffff;
             font-size: 14px;
+        }
+
+        /* Modelos Prontos - Estilo especial */
+        #modelosProntos .project-card {
+            background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(0, 0, 0, 0.9) 100%);
+            border: 2px solid rgba(220, 20, 60, 0.5);
+        }
+
+        #modelosProntos .project-card:hover {
+            background: linear-gradient(135deg, rgba(220, 20, 60, 0.2) 0%, rgba(0, 0, 0, 0.9) 100%);
+            border-color: rgba(220, 20, 60, 0.8);
+            box-shadow: 0 20px 50px rgba(220, 20, 60, 0.6);
+        }
+
+        #modelosProntos .project-title {
+            color: #dc143c;
+            font-weight: 700;
         }
     </style>
 </head>
@@ -447,29 +468,27 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="projects-section" id="modelosProntos">
-    <h2 class="section-title">
-        <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2L2 7l10 5 10-5-10-5zm0 13l-10-5v6l10 5 10-5v-6l-10 5z"/>
-        </svg>
-        Modelos Prontos
-    </h2>
-    <div class="projects-grid">
-        <div class="project-card" onclick="usarModelo('modelo1')">
-            <div class="project-header">
-                <div>
-                    <div class="project-title">Modelo Desenho Vetorial</div>
-                    <div class="project-date">HTML + CSS + JS</div>
+        <div class="projects-section" id="modelosProntos">
+            <h2 class="section-title">
+                <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zm0 13l-10-5v6l10 5 10-5v-6l-10 5z"/>
+                </svg>
+                Modelos Prontos
+            </h2>
+            <div class="projects-grid">
+                <div class="project-card" onclick="usarModelo('modelo1')">
+                    <div class="project-header">
+                        <div>
+                            <div class="project-title">Modelo Desenho Vetorial</div>
+                            <div class="project-date">HTML + CSS + JS</div>
+                        </div>
+                    </div>
+                    <div class="project-description">Modelo com desenho vetorial animado do Pica-pau</div>
                 </div>
             </div>
-            <div class="project-description">Modelo com desenho vetorial do pica-pau</div>
         </div>
-
-        <!-- Adicione outros modelos aqui com IDs diferentes -->
     </div>
-</div>
 
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-content">
@@ -574,7 +593,7 @@
                     createdAt: new Date().toISOString(),
                     lastModified: new Date().toISOString(),
                     userId: currentUser.uid,
-                    html: '<!DOCTYPE html>\n<html lang="pt-BR">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>' + projectName + '</title>\n    <style>\n        body { \n            margin: 0; \n            padding: 15px; \n            font-family: Arial, sans-serif; \n            max-width: 375px; \n            margin: 0 auto; \n            background: #f8f9fa;\n        }\n        h1 { font-size: 1.5rem; color: #333; }\n        p { font-size: 1rem; color: #666; line-height: 1.5; }\n    </style>\n</head>\n<body>\n    <h1>Bem-vindo ao ' + projectName + '</h1>\n    <p>Comece editando seu site mobile aqui!</p>\n</body>\n</html>',
+                    html: '<!DOCTYPE html>\n<html lang="pt-BR">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>' + projectName + '</title>\n    <style>\n        body { \n            margin: 0; \n            padding: 15px; \n            font-family: Arial, sans-serif; \n            max-width: 375px; \n            margin: 0 auto; \n            background: #000000;\n            color: #ffffff;\n        }\n        h1 { font-size: 1.5rem; color: #dc143c; }\n        p { font-size: 1rem; color: #ffffff; line-height: 1.5; }\n    </style>\n</head>\n<body>\n    <h1>Bem-vindo ao ' + projectName + '</h1>\n    <p>Comece editando seu site mobile aqui!</p>\n</body>\n</html>',
                     elements: []
                 };
 
@@ -712,11 +731,10 @@
                     });
             }
         }
-    </script>
-    <script>
-    const modelosProntos = {
-        modelo1: `
-<!DOCTYPE html>
+
+        // MODELO PRONTO - Pica-pau Vetorial
+        const modelosProntos = {
+            modelo1: `<!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
@@ -1461,44 +1479,200 @@
       <div class="bico-curvo-b2"></div>
     </div>
   </div>
+
+  <script>
+    const woody = document.getElementById('woody');
+    
+    function criarEstrelas() {
+      for (let i = 0; i < 15; i++) {
+        const estrela = document.createElement('div');
+        estrela.style.position = 'fixed';
+        estrela.style.width = Math.random() * 3 + 1 + 'px';
+        estrela.style.height = estrela.style.width;
+        estrela.style.background = 'rgba(255, 255, 255, 0.8)';
+        estrela.style.borderRadius = '50%';
+        estrela.style.top = Math.random() * 100 + '%';
+        estrela.style.left = Math.random() * 100 + '%';
+        estrela.style.pointerEvents = 'none';
+        estrela.style.zIndex = '1';
+        estrela.style.animation = \`estrelaPisca \${Math.random() * 3 + 2}s ease-in-out \${Math.random() * 2}s infinite\`;
+        document.body.appendChild(estrela);
+        
+        setTimeout(() => {
+          if (estrela.parentNode) {
+            estrela.remove();
+          }
+        }, 6000);
+      }
+    }
+    
+    const style = document.createElement('style');
+    style.textContent = \`
+      @keyframes estrelaPisca {
+        0%, 100% { opacity: 0; transform: scale(0.5); }
+        50% { opacity: 1; transform: scale(1.2); }
+      }
+    \`;
+    document.head.appendChild(style);
+    
+    setTimeout(criarEstrelas, 500);
+    
+    function criarOndasEnergia() {
+      for (let i = 0; i < 3; i++) {
+        const onda = document.createElement('div');
+        onda.style.position = 'fixed';
+        onda.style.top = '50%';
+        onda.style.left = '50%';
+        onda.style.width = '20px';
+        onda.style.height = '20px';
+        onda.style.border = '2px solid rgba(220, 20, 60, 0.4)';
+        onda.style.borderRadius = '50%';
+        onda.style.transform = 'translate(-50%, -50%)';
+        onda.style.pointerEvents = 'none';
+        onda.style.zIndex = '2';
+        onda.style.animation = \`ondaEnergia 2s ease-out \${i * 0.3}s forwards\`;
+        document.body.appendChild(onda);
+        
+        setTimeout(() => {
+          if (onda.parentNode) {
+            onda.remove();
+          }
+        }, 2500);
+      }
+    }
+    
+    const styleOndas = document.createElement('style');
+    styleOndas.textContent = \`
+      @keyframes ondaEnergia {
+        0% {
+          width: 20px;
+          height: 20px;
+          opacity: 1;
+          border-width: 3px;
+        }
+        100% {
+          width: 300px;
+          height: 300px;
+          opacity: 0;
+          border-width: 1px;
+        }
+      }
+    \`;
+    document.head.appendChild(styleOndas);
+    
+    setTimeout(criarOndasEnergia, 800);
+
+    woody.addEventListener('click', () => {
+      woody.style.animation = 'none';
+      woody.style.transform = 'scale(1.15) rotate(10deg)';
+      woody.style.filter = 'brightness(1.2) drop-shadow(0 15px 30px rgba(220, 20, 60, 0.4))';
+      
+      for (let i = 0; i < 8; i++) {
+        const particula = document.createElement('div');
+        particula.style.position = 'fixed';
+        particula.style.top = '50%';
+        particula.style.left = '50%';
+        particula.style.width = '6px';
+        particula.style.height = '6px';
+        particula.style.background = 'radial-gradient(circle, #ffd700, #ff6b35)';
+        particula.style.borderRadius = '50%';
+        particula.style.pointerEvents = 'none';
+        particula.style.zIndex = '50';
+        
+        const angle = (i / 8) * Math.PI * 2;
+        const distance = 100;
+        const endX = Math.cos(angle) * distance;
+        const endY = Math.sin(angle) * distance;
+        
+        particula.style.animation = \`particulaExplosao 0.8s ease-out forwards\`;
+        particula.style.setProperty('--endX', endX + 'px');
+        particula.style.setProperty('--endY', endY + 'px');
+        
+        document.body.appendChild(particula);
+        
+        setTimeout(() => particula.remove(), 800);
+      }
+      
+      const styleExplosao = document.createElement('style');
+      styleExplosao.textContent = \`
+        @keyframes particulaExplosao {
+          0% {
+            transform: translate(-50%, -50%) translate(0, 0) scale(1);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(-50%, -50%) translate(var(--endX), var(--endY)) scale(0);
+            opacity: 0;
+          }
+        }
+      \`;
+      document.head.appendChild(styleExplosao);
+      
+      setTimeout(() => {
+        woody.style.transform = 'scale(1)';
+        woody.style.filter = 'brightness(1) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))';
+        woody.style.transition = 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        woody.style.animation = 'loopAnimacao 4s ease-in-out infinite';
+      }, 200);
+    });
+
+    woody.addEventListener('mouseenter', () => {
+      if (window.innerWidth > 768) {
+        woody.style.filter = 'brightness(1.1) drop-shadow(0 15px 25px rgba(220, 20, 60, 0.3))';
+        woody.style.transform = 'scale(1.02)';
+        woody.style.transition = 'all 0.3s ease';
+      }
+    });
+
+    woody.addEventListener('mouseleave', () => {
+      if (window.innerWidth > 768) {
+        woody.style.filter = 'brightness(1) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3))';
+        woody.style.transform = 'scale(1)';
+      }
+    });
+
+    setInterval(() => {
+      criarEstrelas();
+    }, 8000);
+  </script>
+  
 </body>
 </html>`
-        // Você pode adicionar mais modelos aqui...
-    };
-
-    function usarModelo(modeloId) {
-        const html = modelosProntos[modeloId];
-        if (!html) return alert('Modelo não encontrado.');
-
-        const projectId = 'modelo_' + Date.now();
-        const projectData = {
-            id: projectId,
-            name: 'Modelo Pronto - ' + modeloId,
-            createdAt: new Date().toISOString(),
-            lastModified: new Date().toISOString(),
-            userId: currentUser.uid,
-            html: html,
-            elements: []
         };
 
-        showLoading();
+        function usarModelo(modeloId) {
+            const html = modelosProntos[modeloId];
+            if (!html) return alert('Modelo não encontrado.');
 
-        database.ref(`users/${currentUser.uid}/projects/${projectId}`).set(projectData)
-            .then(() => {
-                saveToLocalStorage(projectId, projectData);
-                hideLoading();
-                window.location.href = `editor.html?project=${projectId}`;
-            })
-            .catch(() => {
-                if (saveToLocalStorage(projectId, projectData)) {
+            const projectId = 'modelo_' + Date.now();
+            const projectData = {
+                id: projectId,
+                name: 'Modelo Pica-pau Vetorial',
+                createdAt: new Date().toISOString(),
+                lastModified: new Date().toISOString(),
+                userId: currentUser.uid,
+                html: html,
+                elements: []
+            };
+
+            showLoading();
+
+            database.ref(`users/${currentUser.uid}/projects/${projectId}`).set(projectData)
+                .then(() => {
+                    saveToLocalStorage(projectId, projectData);
                     hideLoading();
                     window.location.href = `editor.html?project=${projectId}`;
-                } else {
-                    hideLoading();
-                    alert('Erro ao carregar modelo.');
-                }
-            });
-    }
-</script>
+                })
+                .catch(() => {
+                    if (saveToLocalStorage(projectId, projectData)) {
+                        hideLoading();
+                        window.location.href = `editor.html?project=${projectId}`;
+                    } else {
+                        hideLoading();
+                        alert('Erro ao carregar modelo.');
+                    }
+                });
+        }
+    </script>
 </body>
 </html>
