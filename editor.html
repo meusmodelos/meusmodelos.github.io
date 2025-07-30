@@ -1101,9 +1101,10 @@
                    html.includes('clip-path:');
         }
 
-        // LOAD COMPLEX HTML (like vector models) into iframe
+        // LOAD COMPLEX HTML (like vector models) - CORRIGIDO
         function loadComplexHTML(html) {
             const canvas = document.getElementById('canvas');
+            canvas.innerHTML = '<div class="canvas-frame">Mobile 375x667</div>';
             
             // Create a container for the complex HTML
             const complexContainer = document.createElement('div');
@@ -1118,17 +1119,17 @@
             complexContainer.style.width = '375px';
             complexContainer.style.height = '667px';
             complexContainer.style.position = 'absolute';
+            complexContainer.style.overflow = 'hidden';
             
-            // Create iframe to safely render the complex HTML
-            const iframe = document.createElement('iframe');
-            iframe.style.width = '100%';
-            iframe.style.height = '100%';
-            iframe.style.border = 'none';
-            iframe.style.background = 'transparent';
+            // Render HTML directly inside the container
+            const htmlContainer = document.createElement('div');
+            htmlContainer.innerHTML = html;
+            htmlContainer.style.width = '100%';
+            htmlContainer.style.height = '100%';
             
             complexContainer.innerHTML = `
-                <div class="full-html-container">
-                    ${iframe.outerHTML}
+                <div class="full-html-container" style="width: 100%; height: 100%; position: relative;">
+                    ${html}
                 </div>
                 <div class="element-controls">
                     <button class="control-btn" onclick="editComplexElement('${complexContainer.id}')" title="Editar HTML">
@@ -1147,15 +1148,6 @@
             });
             
             canvas.appendChild(complexContainer);
-            
-            // Render HTML in iframe
-            const iframeElement = complexContainer.querySelector('iframe');
-            const iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
-            iframeDoc.open();
-            iframeDoc.write(html);
-            iframeDoc.close();
-            
-            // Make it draggable but restrict movement
             makeDraggable(complexContainer, true);
         }
 
