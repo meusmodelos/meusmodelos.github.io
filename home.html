@@ -397,6 +397,22 @@
             }
         }
 
+        @media (min-width: 769px) {
+            .header-content {
+                max-width: 1200px;
+                flex-direction: row;
+            }
+            
+            .main-content {
+                max-width: 1200px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+            }
+        }
+
         /* Layout de celular já aplicado por padrão */
         body {
             background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
