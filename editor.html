@@ -1211,13 +1211,10 @@
             if (element && newHTML) {
                 element.dataset.content = newHTML;
                 
-                // Update iframe content
-                const iframe = element.querySelector('iframe');
-                if (iframe) {
-                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                    iframeDoc.open();
-                    iframeDoc.write(newHTML);
-                    iframeDoc.close();
+                // Update HTML content directly
+                const htmlContainer = element.querySelector('.full-html-container');
+                if (htmlContainer) {
+                    htmlContainer.innerHTML = newHTML;
                 }
                 
                 updateCodePanel();
