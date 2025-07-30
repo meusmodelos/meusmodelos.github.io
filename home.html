@@ -732,6 +732,55 @@
             }
         }
 
+        // Função para usar modelo pronto
+        function usarModelo(modeloId) {
+            if (!currentUser) {
+                alert('Você precisa estar logado para usar modelos');
+                return;
+            }
+            
+            const modelHTML = modelosProntos[modeloId];
+            if (!modelHTML) {
+                alert('Modelo não encontrado');
+                return;
+            }
+            
+            const projectName = prompt('Nome do projeto com este modelo:') || 'Projeto com Modelo';
+            const projectId = 'project_' + Date.now();
+            const projectData = {
+                id: projectId,
+                name: projectName,
+                createdAt: new Date().toISOString(),
+                lastModified: new Date().toISOString(),
+                userId: currentUser.uid,
+                html: modelHTML,
+                elements: []
+            };
+            
+            showLoading();
+            
+            // Salvar projeto
+            database.ref(`users/${currentUser.uid}/projects/${projectId}`).set(projectData)
+                .then(() => {
+                    hideLoading();
+                    projects[projectId] = projectData;
+                    saveToLocalStorage(projectId, projectData);
+                    renderProjects();
+                    window.location.href = `editor.html?project=${projectId}`;
+                })
+                .catch((error) => {
+                    if (saveToLocalStorage(projectId, projectData)) {
+                        hideLoading();
+                        projects[projectId] = projectData;
+                        renderProjects();
+                        window.location.href = `editor.html?project=${projectId}`;
+                    } else {
+                        hideLoading();
+                        alert('Erro ao criar projeto: ' + error.message);
+                    }
+                });
+        }
+
         // MODELO PRONTO - Pica-pau Vetorial
         const modelosProntos = {
             modelo1: `<!DOCTYPE html>
