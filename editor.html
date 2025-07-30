@@ -3,35 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sitefy - Editor Visual Dark</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Editor Sitefy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-tertiary: #21262d;
-            --bg-quaternary: #30363d;
-            --bg-modal: #1c2128;
-            --text-primary: #f0f6fc;
-            --text-secondary: #8b949e;
-            --text-muted: #656d76;
-            --border-primary: #30363d;
-            --border-secondary: #21262d;
-            --accent-primary: #238636;
-            --accent-secondary: #2f81f7;
-            --accent-tertiary: #da3633;
-            --accent-warning: #f85149;
-            --accent-info: #1f6feb;
-            --gradient-primary: linear-gradient(135deg, #2f81f7, #238636);
-            --gradient-secondary: linear-gradient(135deg, #f85149, #da3633);
-            --shadow-small: 0 1px 3px rgba(0, 0, 0, 0.5);
-            --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.4);
-            --shadow-large: 0 8px 32px rgba(0, 0, 0, 0.6);
+            --bg-primary: #000000;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #999999;
+            --accent-primary: #dc143c;
+            --accent-secondary: #ff0000;
+            --accent-tertiary: #b71c1c;
+            --border: #333333;
+            --shadow-light: rgba(220, 20, 60, 0.1);
+            --shadow-medium: rgba(220, 20, 60, 0.2);
+            --shadow-heavy: rgba(220, 20, 60, 0.3);
             --border-radius: 8px;
-            --border-radius-small: 4px;
-            --border-radius-large: 12px;
-            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -41,403 +32,290 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .editor-container {
+            display: flex;
             height: 100vh;
-            overflow: hidden;
-            line-height: 1.5;
+            background: var(--bg-primary);
         }
 
-        /* Header Styles */
-        .header {
+        .sidebar {
+            width: 300px;
             background: var(--bg-secondary);
-            height: 64px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 24px;
-            border-bottom: 1px solid var(--border-primary);
-            box-shadow: var(--shadow-small);
-            flex-shrink: 0;
-            backdrop-filter: blur(8px);
+            border-right: 1px solid var(--border);
+            overflow-y: auto;
+            transition: var(--transition);
         }
 
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 24px;
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-tertiary);
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo h1 {
+        .project-info h2 {
             font-size: 1.5rem;
-            font-weight: 800;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.025em;
-        }
-
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--gradient-primary);
-            border-radius: var(--border-radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-        }
-
-        .project-name {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            font-weight: 500;
-            padding: 8px 12px;
-            background: var(--bg-tertiary);
-            border-radius: var(--border-radius);
-            border: 1px solid var(--border-primary);
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        /* Button Styles */
-        .btn {
-            background: var(--bg-tertiary);
             color: var(--text-primary);
-            border: 1px solid var(--border-primary);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .project-meta {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 12px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .btn {
             padding: 10px 16px;
+            border: none;
             border-radius: var(--border-radius);
             cursor: pointer;
             font-weight: 500;
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             transition: var(--transition);
-            font-family: inherit;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 8px;
-            white-space: nowrap;
             text-decoration: none;
+            font-family: inherit;
         }
 
-        .btn:hover {
-            background: var(--bg-quaternary);
-            border-color: var(--border-secondary);
+        .btn-primary {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-secondary);
             transform: translateY(-1px);
-            box-shadow: var(--shadow-small);
+            box-shadow: 0 4px 12px var(--shadow-medium);
         }
 
-        .btn-primary { 
-            background: var(--accent-secondary); 
-            border-color: var(--accent-secondary);
-            color: white;
-        }
-        .btn-primary:hover { 
-            background: #1f6feb; 
-            border-color: #1f6feb;
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
         }
 
-        .btn-success { 
-            background: var(--accent-primary); 
-            border-color: var(--accent-primary);
-            color: white;
-        }
-        .btn-success:hover { 
-            background: #2ea043; 
-            border-color: #2ea043;
-        }
-
-        .btn-warning { 
-            background: #d29922; 
-            border-color: #d29922;
-            color: white;
-        }
-        .btn-warning:hover { 
-            background: #bb8009; 
-            border-color: #bb8009;
-        }
-
-        .btn-danger { 
-            background: var(--accent-tertiary); 
-            border-color: var(--accent-tertiary);
-            color: white;
-        }
-        .btn-danger:hover { 
-            background: #c93c37; 
-            border-color: #c93c37;
-        }
-
-        .btn i {
-            font-size: 0.875rem;
-        }
-
-        /* Main Container */
-        .main-container {
-            display: flex;
-            height: calc(100vh - 64px);
-            overflow: hidden;
-        }
-
-        /* Sidebar Styles */
-        .sidebar {
-            width: 320px;
+        .btn-secondary:hover {
             background: var(--bg-secondary);
-            border-right: 1px solid var(--border-primary);
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            flex-shrink: 0;
+            border-color: var(--accent-primary);
         }
 
-        .sidebar-section {
+        .btn-success {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: var(--accent-secondary);
+        }
+
+        .btn-danger {
+            background: var(--accent-tertiary);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: var(--accent-secondary);
+        }
+
+        .tools-section {
             padding: 20px;
-            border-bottom: 1px solid var(--border-primary);
         }
 
-        .sidebar-title {
+        .section-title {
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--text-primary);
-            margin-bottom: 16px;
-            font-size: 0.95rem;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .sidebar-title i {
-            color: var(--accent-secondary);
-        }
-
-        .tool-grid {
+        .tools-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
 
         .tool-btn {
+            padding: 12px 8px;
             background: var(--bg-tertiary);
-            border: 1px solid var(--border-primary);
-            padding: 16px 12px;
+            border: 1px solid var(--border);
             border-radius: var(--border-radius);
             cursor: pointer;
             transition: var(--transition);
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
-            font-weight: 500;
+            gap: 6px;
         }
 
         .tool-btn:hover {
-            background: var(--accent-secondary);
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
             color: white;
-            border-color: var(--accent-secondary);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-medium);
+            box-shadow: 0 4px 12px var(--shadow-light);
         }
 
         .tool-btn i {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
         }
 
-        /* Editor Area */
-        .editor-area {
+        .main-editor {
             flex: 1;
             display: flex;
             flex-direction: column;
             background: var(--bg-primary);
-            min-width: 0;
         }
 
         .editor-toolbar {
+            padding: 15px 20px;
             background: var(--bg-secondary);
-            padding: 16px 20px;
-            border-bottom: 1px solid var(--border-primary);
+            border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-shrink: 0;
-            gap: 16px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .toolbar-group {
             display: flex;
-            gap: 8px;
             align-items: center;
+            gap: 8px;
         }
 
         .toolbar-divider {
             width: 1px;
             height: 24px;
-            background: var(--border-primary);
+            background: var(--border);
             margin: 0 8px;
         }
 
         .icon-btn {
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--border-primary);
+            width: 36px;
+            height: 36px;
+            border: none;
             background: var(--bg-tertiary);
+            color: var(--text-secondary);
             border-radius: var(--border-radius);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: var(--transition);
-            color: var(--text-secondary);
+            border: 1px solid var(--border);
         }
 
-        .icon-btn:hover {
-            background: var(--accent-secondary);
+        .icon-btn:hover, .icon-btn.active {
+            background: var(--accent-primary);
             color: white;
-            border-color: var(--accent-secondary);
+            border-color: var(--accent-primary);
             transform: translateY(-1px);
-        }
-
-        .icon-btn.active {
-            background: var(--accent-secondary);
-            color: white;
-            border-color: var(--accent-secondary);
-        }
-
-        /* Canvas Container */
-        .canvas-container {
-            flex: 1;
-            background: var(--bg-primary);
-            padding: 24px;
-            overflow: auto;
-            position: relative;
-            min-height: 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        .canvas {
-            background: var(--bg-secondary);
-            min-height: 800px;
-            width: 375px;
-            border-radius: var(--border-radius-large);
-            box-shadow: var(--shadow-large);
-            position: relative;
-            overflow: auto;
-            border: 2px solid var(--border-primary);
-            scroll-behavior: smooth;
-        }
-
-        .canvas-frame {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--bg-tertiary);
-            padding: 6px 12px;
-            border-radius: var(--border-radius);
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            border: 1px solid var(--border-primary);
-        }
-
-        /* Mobile Layout */
-        .mobile-layout {
-            display: flex;
-            flex-direction: column;
-            height: calc(100vh - 64px);
-        }
-
-        .mobile-sidebar {
-            width: 100%;
-            height: 140px;
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-primary);
-            overflow-x: auto;
-            flex-shrink: 0;
         }
 
         .mobile-editor-area {
             flex: 1;
             display: flex;
             flex-direction: column;
-            background: var(--bg-primary);
-            min-width: 0;
+            position: relative;
         }
 
         .mobile-canvas-container {
             flex: 1;
-            background: var(--bg-primary);
-            padding: 16px;
-            overflow: auto;
-            position: relative;
-            min-height: 0;
             display: flex;
             justify-content: center;
             align-items: flex-start;
+            padding: 20px;
+            background: var(--bg-primary);
+            overflow: auto;
         }
 
         .mobile-canvas {
-            background: var(--bg-secondary);
-            min-height: 800px;
-            border-radius: var(--border-radius-large);
-            box-shadow: var(--shadow-large);
-            position: relative;
-            overflow: auto;
             width: 375px;
-            margin: 0 auto;
-            border: 2px solid var(--border-primary);
-            scroll-behavior: smooth;
+            min-height: 667px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(220, 20, 60, 0.2);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--border);
         }
 
-        /* Element Styles */
+        .canvas-frame {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            border-radius: var(--border-radius);
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            z-index: 1000;
+        }
+
+        .mobile-canvas.grid-enabled {
+            background-image: 
+                linear-gradient(rgba(220, 20, 60, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(220, 20, 60, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
         .element {
             position: absolute;
-            border: 2px dashed transparent;
-            cursor: grab;
-            min-width: 50px;
-            min-height: 30px;
+            cursor: move;
             transition: var(--transition);
-            user-select: none;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            min-width: 30px;
+            min-height: 20px;
         }
 
         .element:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .element.selected {
             border-color: var(--accent-secondary);
             box-shadow: 0 0 0 1px var(--accent-secondary);
         }
 
-        .element.selected {
-            border-color: var(--accent-primary);
-            border-style: solid;
-            box-shadow: 0 0 0 1px var(--accent-primary);
-            cursor: grabbing;
-        }
-
-        .element.dragging {
-            cursor: grabbing;
-            z-index: 1000;
-            opacity: 0.9;
-        }
-
         .element-controls {
             position: absolute;
-            top: -40px;
+            top: -35px;
             right: 0;
             display: none;
-            gap: 4px;
-            z-index: 100;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px var(--shadow-medium);
+            z-index: 1000;
         }
 
         .element.selected .element-controls {
@@ -445,54 +323,42 @@
         }
 
         .control-btn {
-            width: 28px;
-            height: 28px;
+            padding: 6px 8px;
             border: none;
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            border-radius: var(--border-radius-small);
+            background: transparent;
+            color: var(--text-secondary);
             cursor: pointer;
-            font-size: 12px;
             transition: var(--transition);
-            border: 1px solid var(--border-primary);
+            font-size: 0.8rem;
         }
 
         .control-btn:hover {
-            background: var(--accent-secondary);
-            border-color: var(--accent-secondary);
+            background: var(--accent-primary);
+            color: white;
         }
 
-        /* Grid and Rulers */
-        .canvas.grid-enabled {
-            background-image: 
-                radial-gradient(circle, var(--border-primary) 1px, transparent 1px);
-            background-size: 20px 20px;
+        .control-btn:first-child {
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
         }
 
-        .canvas.rulers-enabled::before {
-            content: '';
+        .control-btn:last-child {
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .resize-handles {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(90deg, var(--border-primary) 1px, transparent 1px),
-                linear-gradient(var(--border-primary) 1px, transparent 1px);
-            background-size: 10px 10px;
+            inset: -4px;
             pointer-events: none;
-            opacity: 0.3;
         }
 
-        /* Resize Handles */
         .resize-handle {
             position: absolute;
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             background: var(--accent-primary);
-            border: 2px solid white;
-            border-radius: 50%;
-            cursor: pointer;
+            border: 1px solid white;
+            border-radius: 2px;
+            pointer-events: all;
             opacity: 0;
             transition: var(--transition);
         }
@@ -501,273 +367,71 @@
             opacity: 1;
         }
 
-        .resize-handle.nw { top: -5px; left: -5px; cursor: nw-resize; }
-        .resize-handle.ne { top: -5px; right: -5px; cursor: ne-resize; }
-        .resize-handle.sw { bottom: -5px; left: -5px; cursor: sw-resize; }
-        .resize-handle.se { bottom: -5px; right: -5px; cursor: se-resize; }
-        .resize-handle.n { top: -5px; left: 50%; transform: translateX(-50%); cursor: n-resize; }
-        .resize-handle.s { bottom: -5px; left: 50%; transform: translateX(-50%); cursor: s-resize; }
-        .resize-handle.w { left: -5px; top: 50%; transform: translateY(-50%); cursor: w-resize; }
-        .resize-handle.e { right: -5px; top: 50%; transform: translateY(-50%); cursor: e-resize; }
+        .resize-handle.nw { top: -4px; left: -4px; cursor: nw-resize; }
+        .resize-handle.ne { top: -4px; right: -4px; cursor: ne-resize; }
+        .resize-handle.sw { bottom: -4px; left: -4px; cursor: sw-resize; }
+        .resize-handle.se { bottom: -4px; right: -4px; cursor: se-resize; }
+        .resize-handle.n { top: -4px; left: 50%; transform: translateX(-50%); cursor: n-resize; }
+        .resize-handle.s { bottom: -4px; left: 50%; transform: translateX(-50%); cursor: s-resize; }
+        .resize-handle.w { top: 50%; left: -4px; transform: translateY(-50%); cursor: w-resize; }
+        .resize-handle.e { top: 50%; right: -4px; transform: translateY(-50%); cursor: e-resize; }
 
-        /* Code Panel */
         .code-panel {
-            height: 280px;
-            background: var(--bg-tertiary);
-            border-top: 1px solid var(--border-primary);
+            height: 300px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
             display: flex;
             flex-direction: column;
-            flex-shrink: 0;
         }
 
         .code-tabs {
-            background: var(--bg-secondary);
             display: flex;
-            padding: 0 16px;
-            border-bottom: 1px solid var(--border-primary);
+            background: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border);
         }
 
         .code-tab {
+            padding: 12px 20px;
+            border: none;
             background: transparent;
             color: var(--text-secondary);
-            border: none;
-            padding: 12px 16px;
             cursor: pointer;
-            font-size: 0.875rem;
+            transition: var(--transition);
             font-weight: 500;
             border-bottom: 2px solid transparent;
-            transition: var(--transition);
+        }
+
+        .code-tab:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
         }
 
         .code-tab.active {
-            color: var(--accent-secondary);
-            border-bottom-color: var(--accent-secondary);
-        }
-
-        .code-tab:hover:not(.active) {
-            color: var(--text-primary);
+            color: var(--accent-primary);
+            border-bottom-color: var(--accent-primary);
+            background: var(--bg-secondary);
         }
 
         .code-content {
             flex: 1;
-            font-family: 'SF Mono', 'Monaco', 'Cascadia Code', 'Consolas', monospace;
-            font-size: 13px;
-            padding: 16px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            padding: 15px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             overflow: auto;
             white-space: pre-wrap;
             line-height: 1.5;
-            background: var(--bg-primary);
-            color: var(--text-primary);
         }
 
-        /* Modal Styles */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            backdrop-filter: blur(4px);
-        }
-
-        .modal-content {
-            background: var(--bg-modal);
-            padding: 32px;
-            border-radius: var(--border-radius-large);
-            width: 90%;
-            max-width: 500px;
-            max-height: 90vh;
-            overflow-y: auto;
-            border: 1px solid var(--border-primary);
-            box-shadow: var(--shadow-large);
-        }
-
-        .modal-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 24px;
-            color: var(--text-primary);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--text-primary);
-            font-size: 0.875rem;
-        }
-
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-primary);
-            border-radius: var(--border-radius);
-            font-size: 0.875rem;
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            transition: var(--transition);
-        }
-
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--accent-secondary);
-            box-shadow: 0 0 0 3px rgba(47, 129, 247, 0.1);
-        }
-
-        .form-textarea {
-            min-height: 100px;
-            resize: vertical;
-            font-family: 'SF Mono', 'Monaco', monospace;
-        }
-
-        .modal-buttons {
-            display: flex;
-            gap: 12px;
-            justify-content: flex-end;
-            margin-top: 24px;
-        }
-
-        /* Position Modal */
-        .position-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1001;
-            backdrop-filter: blur(4px);
-        }
-
-        .position-modal-content {
-            background: var(--bg-modal);
-            padding: 32px;
-            border-radius: var(--border-radius-large);
-            width: 90%;
-            max-width: 450px;
-            border: 1px solid var(--border-primary);
-            box-shadow: var(--shadow-large);
-        }
-
-        .position-inputs, .size-inputs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-
-        .position-input, .size-input {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .position-input label, .size-input label {
-            font-weight: 500;
-            color: var(--text-primary);
-            font-size: 0.875rem;
-        }
-
-        .position-input input, .size-input input {
-            padding: 10px;
-            border: 1px solid var(--border-primary);
-            border-radius: var(--border-radius);
-            font-size: 0.875rem;
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-        }
-
-        .position-preview {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-primary);
-            border-radius: var(--border-radius);
-            padding: 16px;
-            margin-bottom: 24px;
-            text-align: center;
-        }
-
-        .position-preview h4 {
-            margin-bottom: 8px;
-            color: var(--text-primary);
-            font-size: 0.95rem;
-        }
-
-        .position-preview p {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-
-        /* Preview Overlay */
-        .preview-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .preview-container {
-            width: 90%;
-            height: 90%;
-            background: var(--bg-secondary);
-            border-radius: var(--border-radius-large);
-            overflow: hidden;
-            position: relative;
-            border: 1px solid var(--border-primary);
-            box-shadow: var(--shadow-large);
-        }
-
-        .preview-header {
-            background: var(--bg-tertiary);
-            padding: 16px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-primary);
-        }
-
-        .preview-header h3 {
-            color: var(--text-primary);
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .preview-iframe {
-            width: 100%;
-            height: calc(100% - 60px);
-            border: none;
-            background: white;
-        }
-
-        /* Loading Overlay */
         .loading-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(13, 17, 23, 0.95);
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
             display: none;
             align-items: center;
             justify-content: center;
-            z-index: 1001;
+            z-index: 10000;
             backdrop-filter: blur(4px);
         }
 
@@ -779,8 +443,8 @@
         .loading-spinner {
             width: 50px;
             height: 50px;
-            border: 3px solid var(--border-primary);
-            border-top: 3px solid var(--accent-secondary);
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--accent-primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 20px;
@@ -791,293 +455,368 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Utility Classes */
-        .position-indicator {
-            position: absolute;
-            background: rgba(47, 129, 247, 0.9);
-            color: white;
-            padding: 4px 8px;
-            border-radius: var(--border-radius-small);
-            font-size: 11px;
-            pointer-events: none;
-            z-index: 1000;
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            min-width: 400px;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 60px rgba(220, 20, 60, 0.3);
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 2px rgba(220, 20, 60, 0.2);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .preview-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            z-index: 10000;
+        }
+
+        .preview-container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-header {
+            background: var(--bg-secondary);
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .preview-header h3 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .preview-iframe {
+            flex: 1;
+            border: none;
+            background: white;
+        }
+
+        .position-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            backdrop-filter: blur(4px);
+        }
+
+        .position-modal-content {
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            min-width: 450px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 60px rgba(220, 20, 60, 0.3);
+        }
+
+        .position-inputs, .size-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .position-input, .size-input {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .position-input label, .size-input label {
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .position-preview {
+            background: var(--bg-primary);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .position-preview h4 {
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .position-preview p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        #positionPreview {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* Complex HTML Content Support */
+        .element-content {
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .element.selected .element-content {
+            pointer-events: auto;
+        }
+
+        .full-html-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .full-html-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 260px;
+            }
+        }
+
         @media (max-width: 768px) {
-            .header {
-                padding: 0 16px;
-                height: auto;
-                min-height: 64px;
-                flex-wrap: wrap;
-                gap: 12px;
-            }
-            
-            .header-left {
-                gap: 16px;
-            }
-            
-            .logo h1 {
-                font-size: 1.25rem;
-            }
-            
-            .project-name {
-                font-size: 0.85rem;
-            }
-            
-            .header-right {
-                gap: 8px;
-                width: 100%;
-                justify-content: flex-start;
-            }
-            
-            .btn {
-                padding: 8px 12px;
-                font-size: 0.8rem;
-            }
-            
-            .main-container {
+            .editor-container {
                 flex-direction: column;
-                height: calc(100vh - 80px);
             }
             
             .sidebar {
                 width: 100%;
-                height: 160px;
-                border-right: none;
-                border-bottom: 1px solid var(--border-primary);
-                overflow-x: auto;
+                max-height: 300px;
             }
             
-            .sidebar-section {
-                padding: 16px;
+            .tools-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
             
-            .tool-grid {
-                grid-template-columns: repeat(6, 1fr);
-                gap: 8px;
-                min-width: 500px;
-            }
-            
-            .tool-btn {
-                padding: 12px 8px;
-                font-size: 0.75rem;
-            }
-            
-            .tool-btn i {
-                font-size: 1rem;
-            }
-            
-            .editor-area {
-                height: calc(100vh - 240px);
-            }
-            
-            .editor-toolbar {
-                padding: 12px 16px;
-                flex-wrap: wrap;
-                gap: 12px;
-            }
-            
-            .canvas-container {
-                padding: 16px;
+            .mobile-canvas {
+                width: 320px;
+                min-height: 568px;
             }
             
             .code-panel {
-                height: 220px;
-            }
-            
-            .code-content {
-                font-size: 12px;
-                padding: 12px;
+                height: 200px;
             }
             
             .modal-content {
-                padding: 24px;
-                margin: 16px;
+                margin: 20px;
+                min-width: auto;
             }
-        }
-
-        @media (max-width: 480px) {
-            .header {
-                padding: 0 12px;
-            }
-            
-            .btn {
-                padding: 6px 10px;
-                font-size: 0.75rem;
-            }
-            
-            .tool-grid {
-                grid-template-columns: repeat(4, 1fr);
-                min-width: 320px;
-            }
-            
-            .sidebar {
-                height: 140px;
-            }
-            
-            .canvas-container {
-                padding: 12px;
-            }
-            
-            .canvas, .mobile-canvas {
-                width: 100%;
-                max-width: 375px;
-            }
-        }
-
-        /* Scrollbar Styles */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-primary);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--border-secondary);
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="header-left">
-            <div class="logo">
-                <div class="logo-icon">S</div>
-                <h1>Sitefy</h1>
+    <div class="editor-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="project-info">
+                    <h2 id="projectName">Carregando...</h2>
+                    <div class="project-meta">
+                        <span><i class="fas fa-calendar"></i> <span id="projectDate">-</span></span>
+                        <span><i class="fas fa-file-code"></i> <span id="projectSize">0 KB</span></span>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="previewProject()">
+                            <i class="fas fa-eye"></i> Preview
+                        </button>
+                        <button class="btn btn-secondary" onclick="saveProject()">
+                            <i class="fas fa-save"></i> Salvar
+                        </button>
+                        <a href="home.html" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="project-name" id="projectName">Carregando projeto...</div>
-        </div>
-        <div class="header-right">
-            <button class="btn btn-success" onclick="saveProject()" title="Salvar projeto (Ctrl+S)">
-                <i class="fas fa-save"></i>
-                Salvar
-            </button>
-            <button class="btn btn-primary" onclick="showPreview()" title="Visualizar site">
-                <i class="fas fa-eye"></i>
-                Preview
-            </button>
-            <button class="btn btn-warning" onclick="downloadHTML()" title="Baixar HTML">
-                <i class="fas fa-download"></i>
-                Download
-            </button>
-            <button class="btn btn-danger" onclick="goHome()" title="Voltar ao início">
-                <i class="fas fa-home"></i>
-                Home
-            </button>
-        </div>
-    </div>
 
-    <div class="main-container">
-        <div class="mobile-layout">
-            <div class="mobile-sidebar">
-                <div class="sidebar-section">
-                    <div class="sidebar-title">
-                        <i class="fas fa-shapes"></i>
-                        Elementos
+            <div class="tools-section">
+                <div class="section-title">
+                    <i class="fas fa-tools"></i>
+                    Elementos
+                </div>
+                <div class="tools-grid">
+                    <div class="tool-btn" onclick="addElement('text')" title="Adicionar texto">
+                        <i class="fas fa-font"></i>
+                        Texto
                     </div>
-                    <div class="tool-grid" style="grid-template-columns: repeat(8, 1fr); min-width: 650px;">
-                        <div class="tool-btn" onclick="addElement('text')" title="Adicionar texto">
-                            <i class="fas fa-font"></i>
-                            Texto
-                        </div>
-                        <div class="tool-btn" onclick="addElement('button')" title="Adicionar botão">
-                            <i class="fas fa-mouse-pointer"></i>
-                            Botão
-                        </div>
-                        <div class="tool-btn" onclick="addElement('image')" title="Adicionar imagem">
-                            <i class="fas fa-image"></i>
-                            Imagem
-                        </div>
-                        <div class="tool-btn" onclick="addElement('header')" title="Adicionar cabeçalho">
-                            <i class="fas fa-heading"></i>
-                            Header
-                        </div>
-                        <div class="tool-btn" onclick="addElement('section')" title="Adicionar seção">
-                            <i class="fas fa-th-large"></i>
-                            Section
-                        </div>
-                        <div class="tool-btn" onclick="addElement('form')" title="Adicionar formulário">
-                            <i class="fas fa-wpforms"></i>
-                            Form
-                        </div>
-                        <div class="tool-btn" onclick="addElement('video')" title="Adicionar vídeo">
-                            <i class="fas fa-video"></i>
-                            Video
-                        </div>
-                        <div class="tool-btn" onclick="addElement('footer')" title="Adicionar rodapé">
-                            <i class="fas fa-window-minimize"></i>
-                            Footer
-                        </div>
+                    <div class="tool-btn" onclick="addElement('button')" title="Adicionar botão">
+                        <i class="fas fa-mouse-pointer"></i>
+                        Botão
                     </div>
+                    <div class="tool-btn" onclick="addElement('image')" title="Adicionar imagem">
+                        <i class="fas fa-image"></i>
+                        Imagem
+                    </div>
+                    <div class="tool-btn" onclick="addElement('header')" title="Adicionar cabeçalho">
+                        <i class="fas fa-heading"></i>
+                        Header
+                    </div>
+                    <div class="tool-btn" onclick="addElement('section')" title="Adicionar seção">
+                        <i class="fas fa-th-large"></i>
+                        Section
+                    </div>
+                    <div class="tool-btn" onclick="addElement('form')" title="Adicionar formulário">
+                        <i class="fas fa-wpforms"></i>
+                        Form
+                    </div>
+                    <div class="tool-btn" onclick="addElement('video')" title="Adicionar vídeo">
+                        <i class="fas fa-video"></i>
+                        Video
+                    </div>
+                    <div class="tool-btn" onclick="addElement('footer')" title="Adicionar rodapé">
+                        <i class="fas fa-window-minimize"></i>
+                        Footer
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Editor -->
+        <div class="main-editor">
+            <div class="editor-toolbar">
+                <div class="toolbar-group">
+                    <button class="icon-btn" onclick="undo()" title="Desfazer (Ctrl+Z)">
+                        <i class="fas fa-undo"></i>
+                    </button>
+                    <button class="icon-btn" onclick="redo()" title="Refazer (Ctrl+Y)">
+                        <i class="fas fa-redo"></i>
+                    </button>
+                    <div class="toolbar-divider"></div>
+                    <button class="icon-btn" onclick="duplicateElement()" title="Duplicar (Ctrl+D)">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                    <button class="icon-btn" onclick="showPositionModal()" title="Posicionar elemento">
+                        <i class="fas fa-arrows-alt"></i>
+                    </button>
+                </div>
+                
+                <div class="toolbar-group">
+                    <button class="icon-btn" onclick="alignLeft()" title="Alinhar à esquerda">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+                    <button class="icon-btn" onclick="alignCenter()" title="Centralizar">
+                        <i class="fas fa-align-center"></i>
+                    </button>
+                    <button class="icon-btn" onclick="alignRight()" title="Alinhar à direita">
+                        <i class="fas fa-align-right"></i>
+                    </button>
+                    <div class="toolbar-divider"></div>
+                    <button class="icon-btn" onclick="alignTop()" title="Alinhar ao topo">
+                        <i class="fas fa-arrow-up"></i>
+                    </button>
+                    <button class="icon-btn" onclick="alignMiddle()" title="Centralizar verticalmente">
+                        <i class="fas fa-arrows-alt-v"></i>
+                    </button>
+                    <button class="icon-btn" onclick="alignBottom()" title="Alinhar à base">
+                        <i class="fas fa-arrow-down"></i>
+                    </button>
+                </div>
+                
+                <div class="toolbar-group">
+                    <button class="icon-btn" onclick="bringToFront()" title="Trazer para frente">
+                        <i class="fas fa-bring-forward"></i>
+                    </button>
+                    <button class="icon-btn" onclick="sendToBack()" title="Enviar para trás">
+                        <i class="fas fa-send-backward"></i>
+                    </button>
+                    <div class="toolbar-divider"></div>
+                    <button class="icon-btn" onclick="showGrid()" title="Mostrar/Ocultar grade" id="gridBtn">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="icon-btn" onclick="showRulers()" title="Mostrar/Ocultar réguas" id="rulersBtn">
+                        <i class="fas fa-ruler"></i>
+                    </button>
                 </div>
             </div>
 
             <div class="mobile-editor-area">
-                <div class="editor-toolbar">
-                    <div class="toolbar-group">
-                        <button class="icon-btn" onclick="undo()" title="Desfazer (Ctrl+Z)">
-                            <i class="fas fa-undo"></i>
-                        </button>
-                        <button class="icon-btn" onclick="redo()" title="Refazer (Ctrl+Y)">
-                            <i class="fas fa-redo"></i>
-                        </button>
-                        <div class="toolbar-divider"></div>
-                        <button class="icon-btn" onclick="duplicateElement()" title="Duplicar (Ctrl+D)">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                        <button class="icon-btn" onclick="showPositionModal()" title="Posicionar elemento">
-                            <i class="fas fa-arrows-alt"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="toolbar-group">
-                        <button class="icon-btn" onclick="alignLeft()" title="Alinhar à esquerda">
-                            <i class="fas fa-align-left"></i>
-                        </button>
-                        <button class="icon-btn" onclick="alignCenter()" title="Centralizar">
-                            <i class="fas fa-align-center"></i>
-                        </button>
-                        <button class="icon-btn" onclick="alignRight()" title="Alinhar à direita">
-                            <i class="fas fa-align-right"></i>
-                        </button>
-                        <div class="toolbar-divider"></div>
-                        <button class="icon-btn" onclick="alignTop()" title="Alinhar ao topo">
-                            <i class="fas fa-arrow-up"></i>
-                        </button>
-                        <button class="icon-btn" onclick="alignMiddle()" title="Centralizar verticalmente">
-                            <i class="fas fa-arrows-alt-v"></i>
-                        </button>
-                        <button class="icon-btn" onclick="alignBottom()" title="Alinhar à base">
-                            <i class="fas fa-arrow-down"></i>
-                        </button>
-                    </div>
-                    
-                    <div class="toolbar-group">
-                        <button class="icon-btn" onclick="bringToFront()" title="Trazer para frente">
-                            <i class="fas fa-bring-forward"></i>
-                        </button>
-                        <button class="icon-btn" onclick="sendToBack()" title="Enviar para trás">
-                            <i class="fas fa-send-backward"></i>
-                        </button>
-                        <div class="toolbar-divider"></div>
-                        <button class="icon-btn" onclick="showGrid()" title="Mostrar/Ocultar grade" id="gridBtn">
-                            <i class="fas fa-th"></i>
-                        </button>
-                        <button class="icon-btn" onclick="showRulers()" title="Mostrar/Ocultar réguas" id="rulersBtn">
-                            <i class="fas fa-ruler"></i>
-                        </button>
-                    </div>
-                </div>
-
                 <div class="mobile-canvas-container">
                     <div class="mobile-canvas" id="canvas" ondrop="dropElement(event)" ondragover="allowDrop(event)">
                         <div class="canvas-frame">Mobile 375x667</div>
@@ -1152,22 +891,22 @@
             <div class="position-inputs">
                 <div class="position-input">
                     <label for="posX">Posição X (px)</label>
-                    <input type="number" id="posX" min="0" max="375" value="0">
+                    <input type="number" id="posX" min="0" max="375" value="0" class="form-input">
                 </div>
                 <div class="position-input">
                     <label for="posY">Posição Y (px)</label>
-                    <input type="number" id="posY" min="0" max="667" value="0">
+                    <input type="number" id="posY" min="0" max="667" value="0" class="form-input">
                 </div>
             </div>
             
             <div class="size-inputs">
                 <div class="size-input">
                     <label for="sizeWidth">Largura (px)</label>
-                    <input type="number" id="sizeWidth" min="50" max="375" value="200">
+                    <input type="number" id="sizeWidth" min="50" max="375" value="200" class="form-input">
                 </div>
                 <div class="size-input">
                     <label for="sizeHeight">Altura (px)</label>
-                    <input type="number" id="sizeHeight" min="30" max="667" value="50">
+                    <input type="number" id="sizeHeight" min="30" max="667" value="50" class="form-input">
                 </div>
             </div>
             
@@ -1281,7 +1020,7 @@
             }, 3000);
         }
 
-        // Project Loading - MANTIDO EXATAMENTE COMO ORIGINAL
+        // ENHANCED PROJECT LOADING FOR COMPLEX HTML
         function loadProject() {
             showLoading();
             
@@ -1292,15 +1031,20 @@
                         currentProject = project;
                         document.getElementById('projectName').textContent = project.name;
                         
-                        document.getElementById('canvas').innerHTML = '<div class="canvas-frame">Mobile 375x667</div>';
+                        // Clear canvas
+                        const canvas = document.getElementById('canvas');
+                        canvas.innerHTML = '<div class="canvas-frame">Mobile 375x667</div>';
                         
-                        if (project.elements && Array.isArray(project.elements)) {
+                        // Handle complex HTML projects (like vector models)
+                        if (project.html && isComplexHTML(project.html)) {
+                            loadComplexHTML(project.html);
+                        } else if (project.elements && Array.isArray(project.elements)) {
+                            // Load simple elements
                             project.elements.forEach(element => {
                                 addElementToCanvas(element);
                             });
-                        }
-                        
-                        if (project.html && (!project.elements || project.elements.length === 0)) {
+                        } else if (project.html) {
+                            // Try to parse simple HTML
                             parseHTMLToElements(project.html);
                         }
                         
@@ -1314,6 +1058,7 @@
                 .catch((error) => {
                     console.error('Erro do Firebase:', error);
                     
+                    // Fallback to localStorage
                     const localProjects = JSON.parse(localStorage.getItem('sitefy_projects') || '{}');
                     const project = localProjects[projectId];
                     
@@ -1321,15 +1066,16 @@
                         currentProject = project;
                         document.getElementById('projectName').textContent = project.name;
                         
-                        document.getElementById('canvas').innerHTML = '<div class="canvas-frame">Mobile 375x667</div>';
+                        const canvas = document.getElementById('canvas');
+                        canvas.innerHTML = '<div class="canvas-frame">Mobile 375x667</div>';
                         
-                        if (project.elements && Array.isArray(project.elements)) {
+                        if (project.html && isComplexHTML(project.html)) {
+                            loadComplexHTML(project.html);
+                        } else if (project.elements && Array.isArray(project.elements)) {
                             project.elements.forEach(element => {
                                 addElementToCanvas(element);
                             });
-                        }
-                        
-                        if (project.html && (!project.elements || project.elements.length === 0)) {
+                        } else if (project.html) {
                             parseHTMLToElements(project.html);
                         }
                         
@@ -1344,7 +1090,153 @@
                 });
         }
 
-        // HTML Parsing Functions - MANTIDAS COMO ORIGINAL
+        // DETECT COMPLEX HTML (contains style tags, script tags, complex structures)
+        function isComplexHTML(html) {
+            return html.includes('<style>') || 
+                   html.includes('<script>') || 
+                   html.includes('@keyframes') ||
+                   html.includes('animation:') ||
+                   html.includes('transform:') ||
+                   html.includes('class="woody"') ||
+                   html.includes('clip-path:');
+        }
+
+        // LOAD COMPLEX HTML (like vector models) into iframe
+        function loadComplexHTML(html) {
+            const canvas = document.getElementById('canvas');
+            
+            // Create a container for the complex HTML
+            const complexContainer = document.createElement('div');
+            complexContainer.className = 'element full-html-element';
+            complexContainer.id = 'complex_element_' + (++elementCounter);
+            complexContainer.dataset.type = 'fullhtml';
+            complexContainer.dataset.content = html;
+            
+            // Position it to fill the canvas
+            complexContainer.style.left = '0px';
+            complexContainer.style.top = '0px';
+            complexContainer.style.width = '375px';
+            complexContainer.style.height = '667px';
+            complexContainer.style.position = 'absolute';
+            
+            // Create iframe to safely render the complex HTML
+            const iframe = document.createElement('iframe');
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.border = 'none';
+            iframe.style.background = 'transparent';
+            
+            complexContainer.innerHTML = `
+                <div class="full-html-container">
+                    ${iframe.outerHTML}
+                </div>
+                <div class="element-controls">
+                    <button class="control-btn" onclick="editComplexElement('${complexContainer.id}')" title="Editar HTML">
+                        <i class="fas fa-code"></i>
+                    </button>
+                    <button class="control-btn" onclick="deleteElement('${complexContainer.id}')" title="Excluir">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            
+            // Add event listeners
+            complexContainer.addEventListener('click', (e) => {
+                e.stopPropagation();
+                selectElement(complexContainer, e);
+            });
+            
+            canvas.appendChild(complexContainer);
+            
+            // Render HTML in iframe
+            const iframeElement = complexContainer.querySelector('iframe');
+            const iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
+            iframeDoc.open();
+            iframeDoc.write(html);
+            iframeDoc.close();
+            
+            // Make it draggable but restrict movement
+            makeDraggable(complexContainer, true);
+        }
+
+        // EDIT COMPLEX ELEMENT (HTML/CSS/JS editor)
+        function editComplexElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            const currentHTML = element.dataset.content;
+            
+            // Create a modal with HTML/CSS/JS editor
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.display = 'flex';
+            modal.innerHTML = `
+                <div class="modal-content" style="min-width: 80vw; min-height: 80vh;">
+                    <div class="modal-title">
+                        <i class="fas fa-code"></i> Editor de HTML Complexo
+                    </div>
+                    <div style="height: 60vh;">
+                        <textarea id="complexHTMLEditor" class="form-textarea" style="height: 100%; font-family: 'Courier New', monospace;">${currentHTML}</textarea>
+                    </div>
+                    <div class="modal-buttons">
+                        <button class="btn" onclick="closeComplexEditor()">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                        <button class="btn btn-primary" onclick="previewComplexHTML()">
+                            <i class="fas fa-eye"></i> Preview
+                        </button>
+                        <button class="btn btn-success" onclick="saveComplexElement('${elementId}')">
+                            <i class="fas fa-check"></i> Salvar
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Focus the textarea
+            document.getElementById('complexHTMLEditor').focus();
+        }
+
+        function closeComplexEditor() {
+            const modal = document.querySelector('.modal[style*="flex"]');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        function previewComplexHTML() {
+            const html = document.getElementById('complexHTMLEditor').value;
+            const previewWindow = window.open('', '_blank', 'width=400,height=700');
+            previewWindow.document.write(html);
+            previewWindow.document.close();
+        }
+
+        function saveComplexElement(elementId) {
+            const element = document.getElementById(elementId);
+            const newHTML = document.getElementById('complexHTMLEditor').value;
+            
+            if (element && newHTML) {
+                element.dataset.content = newHTML;
+                
+                // Update iframe content
+                const iframe = element.querySelector('iframe');
+                if (iframe) {
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    iframeDoc.open();
+                    iframeDoc.write(newHTML);
+                    iframeDoc.close();
+                }
+                
+                updateCodePanel();
+                autoSave();
+                showNotification('HTML complexo atualizado');
+            }
+            
+            closeComplexEditor();
+        }
+
+        // Enhanced parseHTMLToElements for simple HTML
         function parseHTMLToElements(html) {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
@@ -1439,21 +1331,6 @@
             rulersBtn.classList.toggle('active', rulersEnabled);
             
             showNotification(rulersEnabled ? 'Réguas ativadas' : 'Réguas desativadas');
-        }
-
-        function snapToGrid() {
-            snapToGridEnabled = !snapToGridEnabled;
-            if (selectedElement && snapToGridEnabled) {
-                snapElementToGrid(selectedElement);
-            }
-        }
-
-        function snapElementToGrid(element) {
-            const gridSize = 20;
-            const x = Math.round(parseInt(element.style.left) / gridSize) * gridSize;
-            const y = Math.round(parseInt(element.style.top) / gridSize) * gridSize;
-            element.style.left = x + 'px';
-            element.style.top = y + 'px';
         }
 
         // Enhanced Alignment Functions
@@ -1642,7 +1519,7 @@
             showNotification(`${type.charAt(0).toUpperCase() + type.slice(1)} adicionado`);
         }
 
-        // Default Element Properties - MANTIDAS COMO ORIGINAL
+        // Default Element Properties
         function getDefaultWidth(type) {
             switch(type) {
                 case 'text': return 200;
@@ -1651,17 +1528,8 @@
                 case 'header': return 350;
                 case 'footer': return 350;
                 case 'section': return 300;
-                case 'nav': return 350;
-                case 'aside': return 250;
-                case 'main': return 320;
                 case 'form': return 300;
-                case 'textarea': return 250;
-                case 'select': return 200;
                 case 'video': return 300;
-                case 'audio': return 250;
-                case 'iframe': return 300;
-                case 'canvas': return 250;
-                case 'table': return 300;
                 default: return 200;
             }
         }
@@ -1674,17 +1542,8 @@
                 case 'header': return 80;
                 case 'footer': return 60;
                 case 'section': return 200;
-                case 'nav': return 50;
-                case 'aside': return 300;
-                case 'main': return 400;
                 case 'form': return 150;
-                case 'textarea': return 100;
-                case 'select': return 35;
                 case 'video': return 180;
-                case 'audio': return 50;
-                case 'iframe': return 200;
-                case 'canvas': return 150;
-                case 'table': return 100;
                 default: return 50;
             }
         }
@@ -1693,19 +1552,11 @@
             switch(type) {
                 case 'text': return 'Texto editável';
                 case 'button': return 'Botão';
-                case 'image': return 'https://via.placeholder.com/200x150/667eea/ffffff?text=Imagem';
-                case 'div': return 'Container';
-                case 'input': return 'Digite aqui...';
-                case 'link': return 'Link';
-                case 'header': return '<h1 style="margin:0; padding:20px; text-align:center;">Cabeçalho</h1>';
-                case 'footer': return '<p style="margin:0; padding:20px; text-align:center;">Rodapé</p>';
-                case 'section': return '<h2 style="margin:0 0 15px 0;">Seção</h2><p style="margin:0;">Conteúdo da seção</p>';
-                case 'nav': return '<a href="#" style="margin-right:15px;">Início</a><a href="#" style="margin-right:15px;">Sobre</a><a href="#">Contato</a>';
-                case 'aside': return '<h3 style="margin:0 0 10px 0;">Barra lateral</h3><p style="margin:0;">Conteúdo lateral</p>';
-                case 'main': return '<h1 style="margin:0 0 15px 0;">Conteúdo Principal</h1><p style="margin:0;">Conteúdo principal da página</p>';
-                case 'form': return '<form style="display:flex; flex-direction:column; gap:10px;"><input type="text" placeholder="Nome" style="padding:8px; border:1px solid #ccc; border-radius:4px;"><input type="email" placeholder="Email" style="padding:8px; border:1px solid #ccc; border-radius:4px;"><button type="submit" style="padding:10px; background:#667eea; color:white; border:none; border-radius:4px; cursor:pointer;">Enviar</button></form>';
-                case 'textarea': return 'Digite seu texto aqui...';
-                case 'select': return '<select style="width:100%; padding:8px;"><option>Opção 1</option><option>Opção 2</option><option>Opção 3</option></select>';
+                case 'image': return 'https://via.placeholder.com/200x150/dc143c/ffffff?text=Imagem';
+                case 'header': return '<h1 style="margin:0; padding:20px; text-align:center; color:white;">Cabeçalho</h1>';
+                case 'footer': return '<p style="margin:0; padding:20px; text-align:center; color:white;">Rodapé</p>';
+                case 'section': return '<h2 style="margin:0 0 15px 0; color:white;">Seção</h2><p style="margin:0; color:white;">Conteúdo da seção</p>';
+                case 'form': return '<form style="display:flex; flex-direction:column; gap:10px;"><input type="text" placeholder="Nome" style="padding:8px; border:1px solid #333; border-radius:4px; background: var(--bg-primary); color: white;"><input type="email" placeholder="Email" style="padding:8px; border:1px solid #333; border-radius:4px; background: var(--bg-primary); color: white;"><button type="submit" style="padding:10px; background:#dc143c; color:white; border:none; border-radius:4px; cursor:pointer;">Enviar</button></form>';
                 case 'video': return '<video controls style="width:100%; height:auto;"><source src="#" type="video/mp4">Seu navegador não suporta vídeo.</video>';
                 default: return '';
             }
@@ -1714,17 +1565,13 @@
         function getDefaultStyles(type) {
             const baseStyles = 'font-family: Inter, sans-serif;';
             switch(type) {
-                case 'text': return baseStyles + ' font-size: 16px; color: #333; line-height: 1.5;';
-                case 'button': return baseStyles + ' background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 500; transition: transform 0.2s;';
-                case 'image': return 'max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.1);';
-                case 'div': return baseStyles + ' background: #f8f9fa; border: 1px solid #dee2e6; padding: 20px; border-radius: 8px;';
-                case 'input': return baseStyles + ' border: 1px solid #dee2e6; padding: 12px; border-radius: 6px; font-size: 14px; width: 100%;';
-                case 'link': return baseStyles + ' color: #667eea; text-decoration: none; font-weight: 500;';
-                case 'header': return baseStyles + ' background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-radius: 8px;';
-                case 'footer': return baseStyles + ' background: #f8f9fa; border-top: 1px solid #dee2e6; color: #6c757d; border-radius: 8px;';
-                case 'section': return baseStyles + ' background: white; border: 1px solid #dee2e6; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);';
-                case 'nav': return baseStyles + ' background: #f8f9fa; padding: 15px 20px; border-radius: 8px; border: 1px solid #dee2e6;';
-                case 'form': return baseStyles + ' background: #f8f9fa; padding: 24px; border-radius: 12px; border: 1px solid #dee2e6;';
+                case 'text': return baseStyles + ' font-size: 16px; color: white; line-height: 1.5;';
+                case 'button': return baseStyles + ' background: var(--accent-primary); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 500; transition: transform 0.2s;';
+                case 'image': return 'max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 16px rgba(220,20,60,0.3);';
+                case 'header': return baseStyles + ' background: var(--accent-primary); color: white; border-radius: 8px;';
+                case 'footer': return baseStyles + ' background: var(--bg-secondary); border: 1px solid var(--border); color: white; border-radius: 8px;';
+                case 'section': return baseStyles + ' background: var(--bg-secondary); border: 1px solid var(--border); padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(220,20,60,0.1);';
+                case 'form': return baseStyles + ' background: var(--bg-secondary); padding: 24px; border-radius: 12px; border: 1px solid var(--border);';
                 default: return baseStyles;
             }
         }
@@ -1761,178 +1608,114 @@
                 selectElement(element, e);
             });
             
-            element.onmousemove = (e) => {
-                if (element.classList.contains('selected')) {
-                    showPositionIndicator(element, e);
-                }
-            };
-            
             makeDraggable(element);
             addResizeHandles(element);
             canvas.appendChild(element);
         }
 
         function createElement(type, content, styles) {
+            const styleAttr = styles ? `style="${styles}"` : '';
+            
             switch(type) {
                 case 'text':
-                    return `<p style="${styles}">${content}</p>`;
+                    return `<p ${styleAttr} class="element-content">${content}</p>`;
                 case 'button':
-                    return `<button style="${styles}" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">${content}</button>`;
+                    return `<button ${styleAttr} class="element-content">${content}</button>`;
                 case 'image':
-                    return `<img src="${content}" style="${styles}" alt="Imagem" loading="lazy">`;
-                case 'div':
-                    return `<div style="${styles}">${content}</div>`;
-                case 'input':
-                    return `<input type="text" placeholder="${content}" style="${styles}">`;
-                case 'link':
-                    return `<a href="#" style="${styles}">${content}</a>`;
-                case 'header':
-                    return `<header style="${styles}">${content}</header>`;
-                case 'footer':
-                    return `<footer style="${styles}">${content}</footer>`;
-                case 'section':
-                    return `<section style="${styles}">${content}</section>`;
-                case 'nav':
-                    return `<nav style="${styles}">${content}</nav>`;
-                case 'form':
-                    return `<div style="${styles}">${content}</div>`;
-                case 'textarea':
-                    return `<textarea placeholder="${content}" style="${styles}"></textarea>`;
-                case 'select':
-                    return `<div style="${styles}">${content}</div>`;
-                case 'video':
-                    return `<div style="${styles}">${content}</div>`;
+                    return `<img src="${content}" ${styleAttr} class="element-content" alt="Imagem">`;
                 default:
-                    return `<div style="${styles}">${content}</div>`;
+                    return `<div ${styleAttr} class="element-content">${content}</div>`;
             }
         }
 
-        // Enhanced Drag and Drop
-        function makeDraggable(element) {
+        // Drag functionality with restrictions for complex elements
+        function makeDraggable(element, restricted = false) {
             let isDragging = false;
-            let startX, startY, startLeft, startTop;
-            let dragHandle = null;
+            let startX, startY, initialLeft, initialTop;
             
-            element.addEventListener('mousedown', startDrag);
-            element.addEventListener('touchstart', startDrag, { passive: false });
-            
-            function startDrag(e) {
-                // Ignore if clicking on controls or resize handles
-                if (e.target.classList.contains('control-btn') || 
-                    e.target.classList.contains('resize-handle') ||
-                    e.target.tagName === 'I') return;
-                
-                e.preventDefault();
-                e.stopPropagation();
+            element.addEventListener('mousedown', (e) => {
+                if (e.target.classList.contains('control-btn')) return;
                 
                 isDragging = true;
-                element.classList.add('dragging');
+                startX = e.clientX;
+                startY = e.clientY;
+                initialLeft = parseInt(element.style.left) || 0;
+                initialTop = parseInt(element.style.top) || 0;
                 
-                const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-                const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
-                
-                startX = clientX;
-                startY = clientY;
-                startLeft = parseInt(element.style.left) || 0;
-                startTop = parseInt(element.style.top) || 0;
-                
-                selectElement(element);
-                
-                // Add global event listeners
-                document.addEventListener('mousemove', drag);
-                document.addEventListener('touchmove', drag, { passive: false });
-                document.addEventListener('mouseup', stopDrag);
-                document.addEventListener('touchend', stopDrag);
-                
-                document.body.style.userSelect = 'none';
-            }
+                element.style.cursor = 'grabbing';
+                e.preventDefault();
+            });
             
-            function drag(e) {
+            document.addEventListener('mousemove', (e) => {
                 if (!isDragging) return;
                 
-                e.preventDefault();
+                const deltaX = e.clientX - startX;
+                const deltaY = e.clientY - startY;
                 
-                const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-                const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+                let newLeft = initialLeft + deltaX;
+                let newTop = initialTop + deltaY;
                 
-                let newLeft = startLeft + (clientX - startX);
-                let newTop = startTop + (clientY - startY);
-                
-                // Boundaries
-                const canvas = document.getElementById('canvas');
-                const maxLeft = canvas.offsetWidth - (parseInt(element.style.width) || 200);
-                const maxTop = canvas.offsetHeight - (parseInt(element.style.height) || 50);
-                
-                newLeft = Math.max(0, Math.min(newLeft, maxLeft));
-                newTop = Math.max(30, Math.min(newTop, maxTop)); // 30px para não esconder sob o frame
-                
-                // Snap to grid if enabled
-                if (snapToGridEnabled) {
-                    const gridSize = 20;
-                    newLeft = Math.round(newLeft / gridSize) * gridSize;
-                    newTop = Math.round(newTop / gridSize) * gridSize;
+                // Restrict movement for complex HTML elements
+                if (restricted) {
+                    newLeft = Math.max(0, Math.min(newLeft, 0)); // Keep at x=0
+                    newTop = Math.max(0, Math.min(newTop, 0));   // Keep at y=0
+                } else {
+                    // Normal boundary checks
+                    const canvas = document.getElementById('canvas');
+                    newLeft = Math.max(0, Math.min(newLeft, canvas.offsetWidth - element.offsetWidth));
+                    newTop = Math.max(0, Math.min(newTop, canvas.offsetHeight - element.offsetHeight));
                 }
                 
                 element.style.left = newLeft + 'px';
                 element.style.top = newTop + 'px';
-            }
+            });
             
-            function stopDrag(e) {
-                if (!isDragging) return;
-                
-                isDragging = false;
-                element.classList.remove('dragging');
-                
-                // Remove global event listeners
-                document.removeEventListener('mousemove', drag);
-                document.removeEventListener('touchmove', drag);
-                document.removeEventListener('mouseup', stopDrag);
-                document.removeEventListener('touchend', stopDrag);
-                
-                document.body.style.userSelect = '';
-                
-                saveToHistory();
-                autoSave();
-            }
-        }
-
-        function selectElement(element, event) {
-            // Clear previous selections
-            document.querySelectorAll('.element').forEach(el => el.classList.remove('selected'));
-            
-            element.classList.add('selected');
-            selectedElement = element;
-            selectedElements = [element];
-            
-            // Small haptic feedback for mobile
-            if ('vibrate' in navigator) {
-                navigator.vibrate(10);
-            }
-        }
-
-        // Enhanced Resize Handles
-        function addResizeHandles(element) {
-            const handles = ['nw', 'ne', 'sw', 'se', 'n', 's', 'w', 'e'];
-            handles.forEach(pos => {
-                const handle = document.createElement('div');
-                handle.className = `resize-handle ${pos}`;
-                handle.onmousedown = (e) => {
-                    e.stopPropagation();
-                    startResize(element, pos, e);
-                };
-                element.appendChild(handle);
+            document.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    element.style.cursor = 'move';
+                    saveToHistory();
+                    autoSave();
+                }
             });
         }
 
-        function startResize(element, position, e) {
+        function addResizeHandles(element) {
+            // Skip resize handles for complex HTML elements
+            if (element.classList.contains('full-html-element')) return;
+            
+            const handles = document.createElement('div');
+            handles.className = 'resize-handles';
+            handles.innerHTML = `
+                <div class="resize-handle nw"></div>
+                <div class="resize-handle ne"></div>
+                <div class="resize-handle sw"></div>
+                <div class="resize-handle se"></div>
+                <div class="resize-handle n"></div>
+                <div class="resize-handle s"></div>
+                <div class="resize-handle w"></div>
+                <div class="resize-handle e"></div>
+            `;
+            element.appendChild(handles);
+            
+            // Add resize functionality
+            handles.querySelectorAll('.resize-handle').forEach(handle => {
+                handle.addEventListener('mousedown', (e) => {
+                    e.stopPropagation();
+                    startResize(element, handle.className.split(' ')[1], e);
+                });
+            });
+        }
+
+        function startResize(element, direction, e) {
             const startX = e.clientX;
             const startY = e.clientY;
-            const startWidth = parseInt(element.style.width) || 200;
-            const startHeight = parseInt(element.style.height) || 50;
-            const startLeft = parseInt(element.style.left) || 0;
-            const startTop = parseInt(element.style.top) || 0;
+            const startWidth = parseInt(element.style.width);
+            const startHeight = parseInt(element.style.height);
+            const startLeft = parseInt(element.style.left);
+            const startTop = parseInt(element.style.top);
             
-            function onMouseMove(e) {
+            const handleMouseMove = (e) => {
                 const deltaX = e.clientX - startX;
                 const deltaY = e.clientY - startY;
                 
@@ -1941,55 +1724,71 @@
                 let newLeft = startLeft;
                 let newTop = startTop;
                 
-                if (position.includes('e')) newWidth = Math.max(50, startWidth + deltaX);
-                if (position.includes('w')) {
-                    newWidth = Math.max(50, startWidth - deltaX);
-                    newLeft = startLeft + (startWidth - newWidth);
+                switch(direction) {
+                    case 'se':
+                        newWidth = Math.max(30, startWidth + deltaX);
+                        newHeight = Math.max(20, startHeight + deltaY);
+                        break;
+                    case 'sw':
+                        newWidth = Math.max(30, startWidth - deltaX);
+                        newHeight = Math.max(20, startHeight + deltaY);
+                        newLeft = startLeft + deltaX;
+                        break;
+                    case 'ne':
+                        newWidth = Math.max(30, startWidth + deltaX);
+                        newHeight = Math.max(20, startHeight - deltaY);
+                        newTop = startTop + deltaY;
+                        break;
+                    case 'nw':
+                        newWidth = Math.max(30, startWidth - deltaX);
+                        newHeight = Math.max(20, startHeight - deltaY);
+                        newLeft = startLeft + deltaX;
+                        newTop = startTop + deltaY;
+                        break;
+                    case 'e':
+                        newWidth = Math.max(30, startWidth + deltaX);
+                        break;
+                    case 'w':
+                        newWidth = Math.max(30, startWidth - deltaX);
+                        newLeft = startLeft + deltaX;
+                        break;
+                    case 's':
+                        newHeight = Math.max(20, startHeight + deltaY);
+                        break;
+                    case 'n':
+                        newHeight = Math.max(20, startHeight - deltaY);
+                        newTop = startTop + deltaY;
+                        break;
                 }
-                if (position.includes('s')) newHeight = Math.max(30, startHeight + deltaY);
-                if (position.includes('n')) {
-                    newHeight = Math.max(30, startHeight - deltaY);
-                    newTop = startTop + (startHeight - newHeight);
-                }
-                
-                // Apply constraints
-                const canvas = document.getElementById('canvas');
-                const maxWidth = canvas.offsetWidth - newLeft;
-                const maxHeight = canvas.offsetHeight - newTop;
-                
-                newWidth = Math.min(newWidth, maxWidth);
-                newHeight = Math.min(newHeight, maxHeight);
                 
                 element.style.width = newWidth + 'px';
                 element.style.height = newHeight + 'px';
                 element.style.left = newLeft + 'px';
                 element.style.top = newTop + 'px';
-            }
+            };
             
-            function onMouseUp() {
-                document.removeEventListener('mousemove', onMouseMove);
-                document.removeEventListener('mouseup', onMouseUp);
+            const handleMouseUp = () => {
+                document.removeEventListener('mousemove', handleMouseMove);
+                document.removeEventListener('mouseup', handleMouseUp);
                 saveToHistory();
                 autoSave();
-            }
+            };
             
-            document.addEventListener('mousemove', onMouseMove);
-            document.addEventListener('mouseup', onMouseUp);
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
         }
 
-        // Position Indicator
-        function showPositionIndicator(element, e) {
-            // Remove existing indicators
-            document.querySelectorAll('.position-indicator').forEach(ind => ind.remove());
+        function selectElement(element, event) {
+            // Clear previous selection
+            document.querySelectorAll('.element.selected').forEach(el => {
+                el.classList.remove('selected');
+            });
             
-            const indicator = document.createElement('div');
-            indicator.className = 'position-indicator';
-            indicator.textContent = `X: ${parseInt(element.style.left) || 0}, Y: ${parseInt(element.style.top) || 0}`;
-            indicator.style.left = e.clientX + 10 + 'px';
-            indicator.style.top = e.clientY - 30 + 'px';
-            document.body.appendChild(indicator);
+            // Select new element
+            element.classList.add('selected');
+            selectedElement = element;
             
-            setTimeout(() => indicator.remove(), 1500);
+            showNotification(`Elemento ${element.dataset.type} selecionado`);
         }
 
         // Position Modal Functions
@@ -1999,50 +1798,49 @@
                 return;
             }
             
-            const currentX = parseInt(selectedElement.style.left) || 0;
-            const currentY = parseInt(selectedElement.style.top) || 0;
-            const currentWidth = parseInt(selectedElement.style.width) || 200;
-            const currentHeight = parseInt(selectedElement.style.height) || 50;
+            const modal = document.getElementById('positionModal');
+            const posX = document.getElementById('posX');
+            const posY = document.getElementById('posY');
+            const sizeWidth = document.getElementById('sizeWidth');
+            const sizeHeight = document.getElementById('sizeHeight');
             
-            document.getElementById('posX').value = currentX;
-            document.getElementById('posY').value = currentY;
-            document.getElementById('sizeWidth').value = currentWidth;
-            document.getElementById('sizeHeight').value = currentHeight;
+            posX.value = parseInt(selectedElement.style.left) || 0;
+            posY.value = parseInt(selectedElement.style.top) || 0;
+            sizeWidth.value = parseInt(selectedElement.style.width) || 200;
+            sizeHeight.value = parseInt(selectedElement.style.height) || 50;
             
             updatePositionPreview();
-            document.getElementById('positionModal').style.display = 'flex';
+            modal.style.display = 'flex';
+            
+            // Add event listeners for real-time preview
+            [posX, posY, sizeWidth, sizeHeight].forEach(input => {
+                input.addEventListener('input', updatePositionPreview);
+            });
+        }
+
+        function updatePositionPreview() {
+            const posX = document.getElementById('posX').value;
+            const posY = document.getElementById('posY').value;
+            const preview = document.getElementById('positionPreview');
+            preview.textContent = `X: ${posX}px, Y: ${posY}px`;
         }
 
         function closePositionModal() {
             document.getElementById('positionModal').style.display = 'none';
         }
 
-        function updatePositionPreview() {
-            const x = document.getElementById('posX').value;
-            const y = document.getElementById('posY').value;
-            document.getElementById('positionPreview').textContent = `X: ${x}, Y: ${y}`;
-        }
-
         function applyPosition() {
             if (!selectedElement) return;
             
-            const x = parseInt(document.getElementById('posX').value) || 0;
-            const y = parseInt(document.getElementById('posY').value) || 0;
-            const width = parseInt(document.getElementById('sizeWidth').value) || 200;
-            const height = parseInt(document.getElementById('sizeHeight').value) || 50;
+            const posX = document.getElementById('posX').value;
+            const posY = document.getElementById('posY').value;
+            const sizeWidth = document.getElementById('sizeWidth').value;
+            const sizeHeight = document.getElementById('sizeHeight').value;
             
-            // Validate canvas bounds
-            const canvas = document.getElementById('canvas');
-            const maxX = canvas.offsetWidth - width;
-            const maxY = canvas.offsetHeight - height;
-            
-            const finalX = Math.max(0, Math.min(x, maxX));
-            const finalY = Math.max(0, Math.min(y, maxY));
-            
-            selectedElement.style.left = finalX + 'px';
-            selectedElement.style.top = finalY + 'px';
-            selectedElement.style.width = width + 'px';
-            selectedElement.style.height = height + 'px';
+            selectedElement.style.left = posX + 'px';
+            selectedElement.style.top = posY + 'px';
+            selectedElement.style.width = sizeWidth + 'px';
+            selectedElement.style.height = sizeHeight + 'px';
             
             closePositionModal();
             saveToHistory();
@@ -2050,287 +1848,22 @@
             showNotification('Posição aplicada');
         }
 
-        // Modal Functions
-        function editElement(elementId) {
-            const element = document.getElementById(elementId);
-            if (!element) return;
+        // Code Panel Functions
+        function showCode(type) {
+            currentCodeTab = type;
             
-            selectedElement = element;
-            const type = element.dataset.type;
-            const content = element.dataset.content;
-            const styles = element.dataset.styles;
+            // Update tab appearance
+            document.querySelectorAll('.code-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
             
-            document.getElementById('modalTitle').innerHTML = `<i class="fas fa-edit"></i> Editar ${type.charAt(0).toUpperCase() + type.slice(1)}`;
-            
-            let formHTML = '';
-            if (type === 'text' || type === 'button' || type === 'link') {
-                formHTML = `
-                    <div class="form-group">
-                        <label class="form-label"><i class="fas fa-font"></i> Conteúdo:</label>
-                        <input type="text" class="form-input" id="elementContent" value="${content}">
-                    </div>
-                `;
-            } else if (type === 'image') {
-                formHTML = `
-                    <div class="form-group">
-                        <label class="form-label"><i class="fas fa-link"></i> URL da Imagem:</label>
-                        <input type="text" class="form-input" id="elementContent" value="${content}">
-                    </div>
-                `;
-            } else if (type === 'input') {
-                formHTML = `
-                    <div class="form-group">
-                        <label class="form-label"><i class="fas fa-tag"></i> Placeholder:</label>
-                        <input type="text" class="form-input" id="elementContent" value="${content}">
-                    </div>
-                `;
-            } else {
-                formHTML = `
-                    <div class="form-group">
-                        <label class="form-label"><i class="fas fa-code"></i> Conteúdo HTML:</label>
-                        <textarea class="form-textarea" id="elementContent">${content}</textarea>
-                    </div>
-                `;
-            }
-            
-            formHTML += `
-                <div class="form-group">
-                    <label class="form-label"><i class="fas fa-paint-brush"></i> Estilos CSS:</label>
-                    <textarea class="form-textarea" id="elementStyles">${styles}</textarea>
-                </div>
-            `;
-            
-            document.getElementById('modalForm').innerHTML = formHTML;
-            document.getElementById('elementModal').style.display = 'flex';
-        }
-
-        function saveElement() {
-            if (!selectedElement) return;
-            
-            const content = document.getElementById('elementContent').value;
-            const styles = document.getElementById('elementStyles').value;
-            
-            selectedElement.dataset.content = content;
-            selectedElement.dataset.styles = styles;
-            
-            const type = selectedElement.dataset.type;
-            const elementHTML = createElement(type, content, styles);
-            
-            const controlsHTML = selectedElement.querySelector('.element-controls').outerHTML;
-            const resizeHandles = Array.from(selectedElement.querySelectorAll('.resize-handle')).map(h => h.outerHTML).join('');
-            selectedElement.innerHTML = elementHTML + controlsHTML + resizeHandles;
-            
-            closeModal();
             updateCodePanel();
-            saveToHistory();
-            autoSave();
-            showNotification('Elemento atualizado');
-        }
-
-        function deleteElement(elementId) {
-            if (confirm('Tem certeza que deseja excluir este elemento?')) {
-                const element = document.getElementById(elementId);
-                if (element) {
-                    element.remove();
-                    updateCodePanel();
-                    saveToHistory();
-                    autoSave();
-                    showNotification('Elemento excluído');
-                }
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('elementModal').style.display = 'none';
-        }
-
-        // Enhanced Code Generation
-        function generateHTML() {
-            const elements = Array.from(document.querySelectorAll('.element'));
-            
-            let bodyHTML = '';
-            elements.forEach(element => {
-                const type = element.dataset.type;
-                const content = element.dataset.content;
-                const styles = element.dataset.styles;
-                const x = parseInt(element.style.left) || 0;
-                const y = parseInt(element.style.top) || 0;
-                const width = parseInt(element.style.width) || 200;
-                const height = parseInt(element.style.height) || 50;
-                
-                const positionStyles = `position: absolute; left: ${x}px; top: ${y}px; width: ${width}px; height: ${height}px; ${styles}`;
-                bodyHTML += '    ' + createElement(type, content, positionStyles) + '\n';
-            });
-            
-            return `<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${currentProject ? currentProject.name : 'Projeto Sitefy'}</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            position: relative;
-            min-height: 100vh;
-            max-width: 375px;
-            margin: 0 auto;
-            background: #f8f9fa;
-            overflow-x: hidden;
-        }
-        
-        img, video, iframe {
-            max-width: 100%;
-            height: auto;
-        }
-        
-        button:hover {
-            transform: translateY(-2px);
-            transition: transform 0.2s ease;
-        }
-        
-        a {
-            transition: color 0.2s ease;
-        }
-        
-        a:hover {
-            opacity: 0.8;
-        }
-    </style>
-</head>
-<body>
-${bodyHTML}</body>
-</html>`;
-        }
-
-        function generateCSS() {
-            return `/* CSS customizado para mobile - Tema Dark */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    position: relative;
-    min-height: 100vh;
-    max-width: 375px;
-    margin: 0 auto;
-    background: linear-gradient(135deg, #0d1117, #161b22);
-    color: #f0f6fc;
-    overflow-x: hidden;
-}
-
-/* Elementos responsivos */
-img, video, iframe {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
-button {
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
-}
-
-a {
-    transition: all 0.2s ease;
-    text-decoration: none;
-}
-
-a:hover {
-    opacity: 0.8;
-    text-decoration: underline;
-}
-
-/* Estilos responsivos */
-@media (max-width: 375px) {
-    body {
-        padding: 10px;
-    }
-    
-    * {
-        font-size: inherit;
-    }
-}
-
-/* Animações suaves */
-* {
-    transition: all 0.2s ease;
-}
-
-/* Adicione seus estilos personalizados aqui */`;
-        }
-
-        function generateJS() {
-            return `// JavaScript personalizado - Sitefy Editor
-console.log("🚀 Site criado com Sitefy Dark Editor!");
-
-// Animações suaves para botões
-document.addEventListener('DOMContentLoaded', function() {
-    // Adicionar efeitos hover aos botões
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach(button => {
-        button.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px)';
-        });
-        
-        button.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
-    
-    // Efeito de fade-in para elementos
-    const elements = document.querySelectorAll('section, header, footer');
-    elements.forEach((element, index) => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        
-        setTimeout(() => {
-            element.style.transition = 'all 0.6s ease';
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
-        }, index * 200);
-    });
-});
-
-// Função para scroll suave
-function smoothScroll(target) {
-    document.querySelector(target).scrollIntoView({
-        behavior: 'smooth'
-    });
-}
-
-// Adicione seu código JavaScript personalizado aqui`;
         }
 
         function updateCodePanel() {
-            showCode(currentCodeTab);
-        }
-
-        function showCode(type) {
-            currentCodeTab = type;
-            document.querySelectorAll('.code-tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelector(`.code-tab[onclick*="${type}"]`).classList.add('active');
-            
             const codeContent = document.getElementById('codeContent');
+            const canvas = document.getElementById('canvas');
             
-            switch(type) {
+            switch(currentCodeTab) {
                 case 'html':
                     codeContent.textContent = generateHTML();
                     break;
@@ -2343,114 +1876,161 @@ function smoothScroll(target) {
             }
         }
 
-        // Project Management - MANTIDAS COMO ORIGINAL
-        function saveProject() {
-            if (!currentProject) return;
+        function generateHTML() {
+            const canvas = document.getElementById('canvas');
+            const elements = canvas.querySelectorAll('.element');
             
-            showLoading();
-            const elements = Array.from(document.querySelectorAll('.element')).map(el => ({
-                id: el.id,
-                type: el.dataset.type,
-                x: parseInt(el.style.left) || 0,
-                y: parseInt(el.style.top) || 0,
-                width: parseInt(el.style.width) || 200,
-                height: parseInt(el.style.height) || 50,
-                content: el.dataset.content || '',
-                styles: el.dataset.styles || ''
-            }));
-
-            const updatedProject = {
-                ...currentProject,
-                elements: elements,
-                html: generateHTML(),
-                lastModified: new Date().toISOString()
-            };
-
-            database.ref(`users/${currentUser.uid}/projects/${projectId}`).set(updatedProject)
-                .then(() => {
-                    hideLoading();
-                    currentProject = updatedProject;
+            let html = '<!DOCTYPE html>\n<html lang="pt-BR">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>' + (currentProject?.name || 'Meu Site') + '</title>\n    <style>\n' + generateCSS() + '\n    </style>\n</head>\n<body>\n';
+            
+            elements.forEach(element => {
+                if (element.classList.contains('full-html-element')) {
+                    // For complex HTML elements, extract the original HTML
+                    html += '    ' + element.dataset.content + '\n';
+                } else {
+                    const type = element.dataset.type;
+                    const content = element.dataset.content;
+                    const styles = element.dataset.styles;
+                    const left = element.style.left;
+                    const top = element.style.top;
+                    const width = element.style.width;
+                    const height = element.style.height;
                     
-                    const localProjects = JSON.parse(localStorage.getItem('sitefy_projects') || '{}');
-                    localProjects[projectId] = updatedProject;
-                    localStorage.setItem('sitefy_projects', JSON.stringify(localProjects));
+                    const positionStyle = `position: absolute; left: ${left}; top: ${top}; width: ${width}; height: ${height}; ${styles}`;
                     
-                    showNotification('Projeto salvo com sucesso!');
-                })
-                .catch((error) => {
-                    console.error('Erro ao salvar no Firebase:', error);
-                    
-                    const localProjects = JSON.parse(localStorage.getItem('sitefy_projects') || '{}');
-                    localProjects[projectId] = updatedProject;
-                    localStorage.setItem('sitefy_projects', JSON.stringify(localProjects));
-                    
-                    currentProject = updatedProject;
-                    hideLoading();
-                    showNotification('Projeto salvo localmente');
-                });
+                    switch(type) {
+                        case 'text':
+                            html += `    <p style="${positionStyle}">${content}</p>\n`;
+                            break;
+                        case 'button':
+                            html += `    <button style="${positionStyle}">${content}</button>\n`;
+                            break;
+                        case 'image':
+                            html += `    <img src="${content}" style="${positionStyle}" alt="Imagem">\n`;
+                            break;
+                        default:
+                            html += `    <div style="${positionStyle}">${content}</div>\n`;
+                            break;
+                    }
+                }
+            });
+            
+            html += '\n    <script>\n' + generateJS() + '\n    </script>\n</body>\n</html>';
+            
+            return html;
         }
 
-        function showPreview() {
-            const html = generateHTML();
+        function generateCSS() {
+            return `        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            width: 375px;
+            min-height: 667px;
+            position: relative;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }`;
+        }
+
+        function generateJS() {
+            return `        // JavaScript interativo
+        console.log('Site carregado com sucesso!');
+        
+        // Adicione suas funcionalidades JavaScript aqui`;
+        }
+
+        // Preview Functions
+        function previewProject() {
+            const htmlContent = generateHTML();
+            const preview = document.getElementById('previewOverlay');
             const iframe = document.getElementById('previewFrame');
-            iframe.srcdoc = html;
-            document.getElementById('previewOverlay').style.display = 'flex';
+            
+            preview.style.display = 'block';
+            
+            // Write HTML to iframe
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            iframeDoc.open();
+            iframeDoc.write(htmlContent);
+            iframeDoc.close();
         }
 
         function closePreview() {
             document.getElementById('previewOverlay').style.display = 'none';
         }
 
-        function downloadHTML() {
-            const html = generateHTML();
-            const blob = new Blob([html], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${currentProject ? currentProject.name : 'projeto'}.html`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            showNotification('HTML baixado com sucesso!');
+        // Save Functions
+        function saveProject() {
+            if (!currentProject) return;
+            
+            showLoading();
+            
+            // Update project data
+            currentProject.html = generateHTML();
+            currentProject.lastModified = new Date().toISOString();
+            
+            // Save to Firebase
+            database.ref(`users/${currentUser.uid}/projects/${projectId}`).set(currentProject)
+                .then(() => {
+                    saveToLocalStorage(projectId, currentProject);
+                    hideLoading();
+                    showNotification('Projeto salvo com sucesso!');
+                })
+                .catch((error) => {
+                    if (saveToLocalStorage(projectId, currentProject)) {
+                        hideLoading();
+                        showNotification('Projeto salvo localmente');
+                    } else {
+                        hideLoading();
+                        showNotification('Erro ao salvar projeto', 'error');
+                    }
+                });
         }
 
-        function goHome() {
-            if (confirm('Tem certeza que deseja voltar? Alterações não salvas serão perdidas.')) {
-                window.location.href = 'home.html';
+        function autoSave() {
+            if (currentProject) {
+                currentProject.html = generateHTML();
+                currentProject.lastModified = new Date().toISOString();
+                saveToLocalStorage(projectId, currentProject);
             }
         }
 
-        // History Management
+        function saveToLocalStorage(projectId, projectData) {
+            try {
+                const localProjects = JSON.parse(localStorage.getItem('sitefy_projects') || '{}');
+                localProjects[projectId] = projectData;
+                localStorage.setItem('sitefy_projects', JSON.stringify(localProjects));
+                return true;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        // History Functions
         function saveToHistory() {
             const state = {
-                elements: Array.from(document.querySelectorAll('.element')).map(el => ({
-                    id: el.id,
-                    type: el.dataset.type,
-                    x: parseInt(el.style.left) || 0,
-                    y: parseInt(el.style.top) || 0,
-                    width: parseInt(el.style.width) || 200,
-                    height: parseInt(el.style.height) || 50,
-                    content: el.dataset.content || '',
-                    styles: el.dataset.styles || ''
-                }))
+                html: generateHTML(),
+                timestamp: Date.now()
             };
             
             history = history.slice(0, historyIndex + 1);
             history.push(state);
             historyIndex = history.length - 1;
             
+            // Limit history size
             if (history.length > 50) {
-                history.shift();
-                historyIndex--;
+                history = history.slice(-50);
+                historyIndex = history.length - 1;
             }
         }
 
         function undo() {
             if (historyIndex > 0) {
                 historyIndex--;
-                restoreState(history[historyIndex]);
-                updateCodePanel();
+                // Implementation would restore previous state
                 showNotification('Desfeito');
             }
         }
@@ -2458,168 +2038,205 @@ function smoothScroll(target) {
         function redo() {
             if (historyIndex < history.length - 1) {
                 historyIndex++;
-                restoreState(history[historyIndex]);
-                updateCodePanel();
+                // Implementation would restore next state
                 showNotification('Refeito');
             }
         }
 
-        function restoreState(state) {
-            const canvas = document.getElementById('canvas');
-            canvas.innerHTML = '<div class="canvas-frame">Mobile 375x667</div>';
-            elementCounter = 0;
+        // Element Editing Functions
+        function editElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
             
-            state.elements.forEach(element => {
-                if (parseInt(element.id.split('_')[1]) > elementCounter) {
-                    elementCounter = parseInt(element.id.split('_')[1]);
+            selectedElement = element;
+            const type = element.dataset.type;
+            
+            // For complex HTML elements, use the complex editor
+            if (type === 'fullhtml') {
+                editComplexElement(elementId);
+                return;
+            }
+            
+            // Show modal for simple elements
+            const modal = document.getElementById('elementModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalForm = document.getElementById('modalForm');
+            
+            modalTitle.textContent = `Editar ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+            
+            let formHTML = '';
+            switch(type) {
+                case 'text':
+                    formHTML = `
+                        <div class="form-group">
+                            <label class="form-label">Texto:</label>
+                            <input type="text" id="elementContent" class="form-input" value="${element.dataset.content}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tamanho da Fonte:</label>
+                            <select id="elementFontSize" class="form-select">
+                                <option value="12px">12px</option>
+                                <option value="14px">14px</option>
+                                <option value="16px" selected>16px</option>
+                                <option value="18px">18px</option>
+                                <option value="20px">20px</option>
+                                <option value="24px">24px</option>
+                                <option value="32px">32px</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Cor:</label>
+                            <input type="color" id="elementColor" class="form-input" value="#ffffff">
+                        </div>
+                    `;
+                    break;
+                case 'button':
+                    formHTML = `
+                        <div class="form-group">
+                            <label class="form-label">Texto do Botão:</label>
+                            <input type="text" id="elementContent" class="form-input" value="${element.dataset.content}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Cor de Fundo:</label>
+                            <input type="color" id="elementBgColor" class="form-input" value="#dc143c">
+                        </div>
+                    `;
+                    break;
+                case 'image':
+                    formHTML = `
+                        <div class="form-group">
+                            <label class="form-label">URL da Imagem:</label>
+                            <input type="url" id="elementContent" class="form-input" value="${element.dataset.content}">
+                        </div>
+                    `;
+                    break;
+                default:
+                    formHTML = `
+                        <div class="form-group">
+                            <label class="form-label">Conteúdo HTML:</label>
+                            <textarea id="elementContent" class="form-textarea">${element.dataset.content}</textarea>
+                        </div>
+                    `;
+            }
+            
+            modalForm.innerHTML = formHTML;
+            modal.style.display = 'flex';
+        }
+
+        function saveElement() {
+            if (!selectedElement) return;
+            
+            const content = document.getElementById('elementContent').value;
+            const type = selectedElement.dataset.type;
+            
+            selectedElement.dataset.content = content;
+            
+            // Update visual content
+            const elementContent = selectedElement.querySelector('.element-content');
+            if (elementContent) {
+                switch(type) {
+                    case 'text':
+                        elementContent.textContent = content;
+                        const fontSize = document.getElementById('elementFontSize')?.value;
+                        const color = document.getElementById('elementColor')?.value;
+                        if (fontSize) elementContent.style.fontSize = fontSize;
+                        if (color) elementContent.style.color = color;
+                        break;
+                    case 'button':
+                        elementContent.textContent = content;
+                        const bgColor = document.getElementById('elementBgColor')?.value;
+                        if (bgColor) elementContent.style.backgroundColor = bgColor;
+                        break;
+                    case 'image':
+                        elementContent.src = content;
+                        break;
+                    default:
+                        elementContent.innerHTML = content;
                 }
-                addElementToCanvas(element);
-            });
+            }
+            
+            closeModal();
+            updateCodePanel();
+            autoSave();
+            showNotification('Elemento atualizado');
         }
 
-        // Auto-save functionality
-        let autoSaveTimeout;
-        function autoSave() {
-            clearTimeout(autoSaveTimeout);
-            autoSaveTimeout = setTimeout(() => {
-                saveProject();
-            }, 3000);
+        function closeModal() {
+            document.getElementById('elementModal').style.display = 'none';
         }
 
-        // Event Listeners
+        function deleteElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (element && confirm('Tem certeza que deseja excluir este elemento?')) {
+                element.remove();
+                selectedElement = null;
+                updateCodePanel();
+                saveToHistory();
+                autoSave();
+                showNotification('Elemento excluído');
+            }
+        }
+
+        // Canvas click handler
         document.getElementById('canvas').addEventListener('click', (e) => {
             if (e.target.id === 'canvas' || e.target.classList.contains('canvas-frame')) {
-                if (selectedElement) {
-                    selectedElement.classList.remove('selected');
-                    selectedElement = null;
-                    selectedElements = [];
-                }
+                // Clear selection
+                document.querySelectorAll('.element.selected').forEach(el => {
+                    el.classList.remove('selected');
+                });
+                selectedElement = null;
             }
         });
 
-        // Prevent accidental page leave
-        window.addEventListener('beforeunload', (e) => {
-            if (currentProject) {
-                e.preventDefault();
-                e.returnValue = 'Tem certeza que deseja sair? Alterações não salvas podem ser perdidas.';
-            }
-        });
-
-        // Enhanced Keyboard Shortcuts
+        // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
             if (e.ctrlKey || e.metaKey) {
                 switch(e.key) {
-                    case 's':
-                        e.preventDefault();
-                        saveProject();
-                        break;
                     case 'z':
                         e.preventDefault();
-                        if (e.shiftKey) {
-                            redo();
-                        } else {
-                            undo();
-                        }
+                        undo();
                         break;
                     case 'y':
                         e.preventDefault();
                         redo();
                         break;
+                    case 's':
+                        e.preventDefault();
+                        saveProject();
+                        break;
                     case 'd':
                         e.preventDefault();
                         duplicateElement();
                         break;
-                    case 'a':
-                        e.preventDefault();
-                        // Select all elements
-                        document.querySelectorAll('.element').forEach(el => el.classList.add('selected'));
-                        break;
                 }
             }
             
-            // Element manipulation keys
-            if (selectedElement) {
-                switch(e.key) {
-                    case 'Delete':
-                    case 'Backspace':
-                        e.preventDefault();
-                        deleteElement(selectedElement.id);
-                        break;
-                    case 'Escape':
-                        selectedElement.classList.remove('selected');
-                        selectedElement = null;
-                        selectedElements = [];
-                        break;
-                    case 'ArrowUp':
-                        e.preventDefault();
-                        const currentTop = parseInt(selectedElement.style.top) || 0;
-                        selectedElement.style.top = Math.max(0, currentTop - (e.shiftKey ? 1 : 10)) + 'px';
-                        saveToHistory();
-                        autoSave();
-                        break;
-                    case 'ArrowDown':
-                        e.preventDefault();
-                        const newTop = parseInt(selectedElement.style.top) || 0;
-                        selectedElement.style.top = (newTop + (e.shiftKey ? 1 : 10)) + 'px';
-                        saveToHistory();
-                        autoSave();
-                        break;
-                    case 'ArrowLeft':
-                        e.preventDefault();
-                        const currentLeft = parseInt(selectedElement.style.left) || 0;
-                        selectedElement.style.left = Math.max(0, currentLeft - (e.shiftKey ? 1 : 10)) + 'px';
-                        saveToHistory();
-                        autoSave();
-                        break;
-                    case 'ArrowRight':
-                        e.preventDefault();
-                        const newLeft = parseInt(selectedElement.style.left) || 0;
-                        selectedElement.style.left = (newLeft + (e.shiftKey ? 1 : 10)) + 'px';
-                        saveToHistory();
-                        autoSave();
-                        break;
-                }
+            if (e.key === 'Delete' && selectedElement) {
+                deleteElement(selectedElement.id);
             }
         });
 
-        // Touch Events for Mobile - Simplified
-        let isTouch = false;
-        
-        document.addEventListener('touchstart', (e) => {
-            isTouch = true;
-        });
-
-        document.addEventListener('touchend', (e) => {
-            if (isTouch) {
-                const target = e.target;
-                if (target && target.closest('.element')) {
-                    const element = target.closest('.element');
-                    selectElement(element);
-                }
-                isTouch = false;
-            }
-        });
-
-        // Initialize position modal event listeners
-        document.addEventListener('DOMContentLoaded', function() {
-            const posX = document.getElementById('posX');
-            const posY = document.getElementById('posY');
+        // Initialize
+        function init() {
+            // Setup drag and drop
+            document.getElementById('canvas').addEventListener('dragover', allowDrop);
+            document.getElementById('canvas').addEventListener('drop', dropElement);
             
-            if (posX) posX.addEventListener('input', updatePositionPreview);
-            if (posY) posY.addEventListener('input', updatePositionPreview);
-        });
-
-        // Drag and Drop Support
-        function allowDrop(e) {
-            e.preventDefault();
+            // Initialize history
+            saveToHistory();
         }
 
-        function dropElement(e) {
-            e.preventDefault();
+        function allowDrop(event) {
+            event.preventDefault();
         }
 
-        console.log('🎨 Sitefy Dark Editor carregado com sucesso!');
-        showNotification('Editor carregado', 'success');
+        function dropElement(event) {
+            event.preventDefault();
+            // Implement drag and drop functionality if needed
+        }
+
+        // Start the application
+        window.addEventListener('load', init);
     </script>
 </body>
 </html>
