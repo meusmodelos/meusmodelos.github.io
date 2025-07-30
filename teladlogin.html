@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -40,7 +40,7 @@
 
         .shape {
             position: absolute;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(220, 20, 60, 0.1);
             border-radius: 50%;
             animation: float 6s ease-in-out infinite;
         }
@@ -75,16 +75,16 @@
         }
 
         .login-container {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(220, 20, 60, 0.3);
             padding: 40px;
             width: 100%;
             max-width: 400px;
             position: relative;
             animation: slideIn 0.8s ease-out;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(220, 20, 60, 0.3);
         }
 
         @keyframes slideIn {
@@ -106,7 +106,7 @@
         .logo h1 {
             font-size: 2.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #dc143c, #ff0000);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -115,12 +115,12 @@
         }
 
         @keyframes glow {
-            from { filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.3)); }
-            to { filter: drop-shadow(0 0 15px rgba(102, 126, 234, 0.6)); }
+            from { filter: drop-shadow(0 0 5px rgba(220, 20, 60, 0.3)); }
+            to { filter: drop-shadow(0 0 15px rgba(220, 20, 60, 0.6)); }
         }
 
         .logo p {
-            color: #666;
+            color: #cccccc;
             font-size: 0.9rem;
             font-weight: 300;
         }
@@ -133,18 +133,19 @@
         .form-group input {
             width: 100%;
             padding: 15px 20px;
-            border: 2px solid #e1e5e9;
+            border: 2px solid #333333;
             border-radius: 12px;
             font-size: 1rem;
             transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
             font-family: 'Poppins', sans-serif;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #dc143c;
+            box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.2);
             transform: translateY(-2px);
         }
 
@@ -152,7 +153,7 @@
             position: absolute;
             left: 20px;
             top: 15px;
-            color: #999;
+            color: #999999;
             transition: all 0.3s ease;
             pointer-events: none;
             font-weight: 400;
@@ -163,15 +164,15 @@
             top: -10px;
             left: 15px;
             font-size: 0.8rem;
-            color: #667eea;
-            background: white;
+            color: #dc143c;
+            background: #000000;
             padding: 0 5px;
         }
 
         .login-btn {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #dc143c, #ff0000);
             color: white;
             border: none;
             border-radius: 12px;
@@ -186,7 +187,7 @@
 
         .login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 25px rgba(220, 20, 60, 0.5);
         }
 
         .login-btn:active {
@@ -214,7 +215,7 @@
         }
 
         .links-container a {
-            color: #667eea;
+            color: #dc143c;
             text-decoration: none;
             margin: 0 15px;
             font-weight: 500;
@@ -223,7 +224,7 @@
         }
 
         .links-container a:hover {
-            color: #764ba2;
+            color: #ff0000;
             transform: translateY(-1px);
         }
 
@@ -234,7 +235,7 @@
             height: 2px;
             bottom: -5px;
             left: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #dc143c, #ff0000);
             transition: all 0.3s ease;
         }
 
@@ -249,7 +250,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(0, 0, 0, 0.95);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -267,8 +268,8 @@
         .loading-spinner {
             width: 60px;
             height: 60px;
-            border: 4px solid #e1e5e9;
-            border-top: 4px solid #667eea;
+            border: 4px solid #333333;
+            border-top: 4px solid #dc143c;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -287,9 +288,9 @@
         }
 
         .nav-btn {
-            background: rgba(255, 255, 255, 0.9);
-            color: #667eea;
-            border: none;
+            background: rgba(0, 0, 0, 0.9);
+            color: #dc143c;
+            border: 1px solid rgba(220, 20, 60, 0.3);
             padding: 10px 15px;
             border-radius: 8px;
             cursor: pointer;
@@ -300,13 +301,14 @@
         }
 
         .nav-btn:hover {
-            background: #667eea;
+            background: #dc143c;
             color: white;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 20, 60, 0.4);
         }
 
         .error-message {
-            background: #ff4757;
+            background: #dc143c;
             color: white;
             padding: 10px 15px;
             border-radius: 8px;
